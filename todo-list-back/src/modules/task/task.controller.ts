@@ -5,7 +5,7 @@ import { UpdateTaskDto } from './dto/update-task.dto';
 import { ApiTags } from '@nestjs/swagger';
 import { Task } from 'src/models/task.model';
 
-@Controller('task')
+@Controller('api/task')
 @ApiTags('task')
 export class TaskController {
     constructor(

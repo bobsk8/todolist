@@ -6,7 +6,7 @@ import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
 import { CreateTaskDto } from '../task/dto/create-task.dto';
 
-@Controller('project')
+@Controller('api/project')
 @ApiTags('project')
 export class ProjectController {
     constructor(
