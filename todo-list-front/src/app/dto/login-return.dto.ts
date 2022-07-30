@@ -1,4 +1,4 @@
-import { User } from "../model/task.model";
+import { User } from '../model/task.model';
 
 export class LoginReturnDto {
     constructor(
