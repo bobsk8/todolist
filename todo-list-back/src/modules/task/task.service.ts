@@ -1,0 +1,87 @@
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository, getManager } from 'typeorm';
+
+import { Task } from '../../models/task.model';
+import { UpdateTaskDto } from './dto/update-task.dto';
+
+@Injectable()
+export class TaskService {
+    constructor(
+        @InjectRepository(Task)
+        private taskRepository: Repository<Task>,
+    ) { }
+
+    save(task: any): Promise<Task> {
+        try {
+            const resp = this.taskRepository.save(task);
+            return resp;
+        } catch (err) {
+            throw new HttpException({
+                status: HttpStatus.FORBIDDEN,
+                error: err.errmsg,
+            }, HttpStatus.FORBIDDEN);
+        }
+    }
+
+    findAll(): Promise<Task[]> {
+        try {
+            const resp = this.taskRepository.find();
+            return resp;
+        } catch (err) {
+            throw new HttpException({
+                status: HttpStatus.FORBIDDEN,
+                error: err.errmsg,
+            }, HttpStatus.FORBIDDEN);
+        }
+    }
+
+    findOne(id: number): Promise<Task> {
+        try {
+            const resp = this.taskRepository.findOne(id);
+            return resp;
+        } catch (err) {
+            throw new HttpException({
+                status: HttpStatus.FORBIDDEN,
+                error: err.errmsg,
+            }, HttpStatus.FORBIDDEN);
+        }
+    }
+
+    async remove(id: number): Promise<void> {
+        try {
+            this.taskRepository.delete(id);
+        } catch (err) {
+            throw new HttpException({
+                status: HttpStatus.FORBIDDEN,
+                error: err.errmsg,
+            }, HttpStatus.FORBIDDEN);
+        }
+    }
+
+    async update(id: number, task: UpdateTaskDto): Promise<Task> {
+        try {
+            const taskSaved = await this.taskRepository.findOne(id); 
+            taskSaved.description = task.description;
+            taskSaved.completed = task.completed;
+            return this.taskRepository.save(taskSaved);
+        } catch (err) {
+            throw new HttpException({
+                status: HttpStatus.FORBIDDEN,
+                error: err.errmsg,
+            }, HttpStatus.FORBIDDEN);
+        }
+    }
+
+    async findByProjectId(projectId: string): Promise<Task[]> {
+        try {
+            const resp = this.taskRepository.find({ relations: ['task'], where: { project: { id: projectId } } });
+            return resp;
+        } catch (err) {
+            throw new HttpException({
+                status: HttpStatus.FORBIDDEN,
+                error: err.errmsg,
+            }, HttpStatus.FORBIDDEN);
+        }
+    }
+}
