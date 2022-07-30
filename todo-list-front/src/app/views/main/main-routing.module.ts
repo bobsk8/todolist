@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from 'src/app/core/guards/auth.guard';
 
 import { MainComponent } from './main.component';
 
@@ -9,11 +10,18 @@ const routes: Routes = [
     children: [
       {
         path: 'project', loadChildren: () =>
-          import('./components/project/project.module').then(m => m.ProjectModule)
+          import('./components/project/project.module').then(m => m.ProjectModule),
+        canLoad: [AuthGuard]
       },
       {
-        path: 'project-detail', loadChildren: () =>
-          import('./components/project-detail/project-detail.module').then(m => m.ProjectDetailModule)
+        path: ':id', loadChildren: () =>
+          import('./components/project-detail/project-detail.module').then(m => m.ProjectDetailModule),
+        canLoad: [AuthGuard]
+      },
+      {
+        path: 'new', loadChildren: () =>
+          import('./components/project-detail/project-detail.module').then(m => m.ProjectDetailModule),
+        canLoad: [AuthGuard]
       }
     ]
   }

@@ -12,8 +12,8 @@ import { LoginDto } from 'src/app/dto/login.dto';
 })
 export class LoginComponent implements OnInit {
 
-  submitted = false;
-  loginForm: FormGroup;
+  public submitted = false;
+  public loginForm: FormGroup;
   constructor(
     private router: Router,
     private fb: FormBuilder,
