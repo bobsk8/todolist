@@ -14,7 +14,7 @@ export class UserService {
     private usersRepository: Repository<User>,
   ) {}
 
-  async save(user: CreateUserDto): Promise<User> {
+  public async save(user: CreateUserDto): Promise<User> {
     try {
       user.password = passwordHash(user.password);
       const resp = await this.usersRepository.save(user);
@@ -31,7 +31,7 @@ export class UserService {
     }
   }
 
-  findAll(): Promise<User[]> {
+  public findAll(): Promise<User[]> {
     try {
       const resp = this.usersRepository.find();
       return resp;
@@ -46,7 +46,7 @@ export class UserService {
     }
   }
 
-  async findOne(id: number): Promise<User> {
+  public async findOne(id: number): Promise<User> {
     try {
       const resp = await this.usersRepository.findOne(id);
       delete resp.password;
@@ -62,7 +62,7 @@ export class UserService {
     }
   }
 
-  findByUserName(username: string): Promise<User> {
+  public findByUserName(username: string): Promise<User> {
     try {
       const resp = this.usersRepository.findOne({ where: { username } });
       return resp;
@@ -77,7 +77,7 @@ export class UserService {
     }
   }
 
-  async remove(id: number): Promise<void> {
+  public async remove(id: number): Promise<void> {
     try {
       this.usersRepository.delete(id);
     } catch (err) {
@@ -91,7 +91,7 @@ export class UserService {
     }
   }
 
-  async update(id: number, user: UpdateUserDto): Promise<User> {
+  public async update(id: number, user: UpdateUserDto): Promise<User> {
     try {
       const userSaved = await this.usersRepository.findOne(id);
       userSaved.name = user.name;
