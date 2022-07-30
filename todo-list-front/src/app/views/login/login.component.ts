@@ -20,18 +20,11 @@ export class LoginComponent implements OnInit {
     private loginService: LoginService
   ) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.loginForm = this.createForm();
   }
 
-  createForm(): FormGroup {
-    return this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-    });
-  }
-
-  onSubmit(form: FormGroup): void {
+  public onSubmit(form: FormGroup): void {
     this.submitted = true;
     if (!form.valid) {
       return;
@@ -40,11 +33,18 @@ export class LoginComponent implements OnInit {
     this.login(loginDto);
   }
 
-  login(loginDto: LoginDto): void {
+  private login(loginDto: LoginDto): void {
     this.loginService.login(loginDto)
     .subscribe(resp => {
       this.loginService.setCurrentUserSession(resp.user, resp.token);
       this.router.navigate(['project']);
+    });
+  }
+
+  private createForm(): FormGroup {
+    return this.fb.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
