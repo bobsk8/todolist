@@ -1,0 +1,67 @@
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-sm-8">
+                {{project.name}}
+            </div>
+            <div class="col-sm-2">
+                <i class="fas fa-edit" routerLink="/project/{{project.id}}"></i>
+            </div>
+            <div class="col-sm-2">
+                <i class="fas fa-trash" (click)="removeP(project.id)"></i>
+            </div>
+        </div>
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            TODO <br>
+            <div *ngFor="let task of project.tasks">
+                <div *ngIf="!task.completed">                            
+                    <div class="row todo-itens">
+                        <div class="col-sm-2">
+                            <input type="checkbox" name="" id="" (change)="setDoneT(project, task)">
+                        </div>
+                        <div class="col-sm-6">
+                            {{task.description}}
+                        </div>
+                        <div class="col-sm-2">
+                            <i class="fas fa-edit" (click)="editT(project, task)"></i>
+                        </div>
+                        <div class="col-sm-2">
+                            <i class="fas fa-trash" (click)="removeT(project, task.id)"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            DONE <br>
+            <div *ngFor="let task of project.tasks">
+                <div *ngIf="task.completed">
+                    <div class="row done-itens">
+                        <div class="col-sm-2">
+                            <input type="checkbox" [checked]="task.completed" disabled>
+                        </div>
+                        <div class="col-sm-6">
+                            {{task.description}}
+                        </div>
+                        <div class="col-sm-4">
+                            {{task.updatedAt | date: 'yyyy-MM-dd'}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">                    
+            <div class="row">                        
+                <div class="col-sm-8">
+                    <input type="text" [(ngModel)]="project.taskDescription" class="form-control" name="description" placeholder="Task Description" />                
+                </div>
+                <div class="col-sm-4">
+                    <button class="btn btn-primary" (click)="saveT(project)">Save</button>
+                </div>                        
+            </div>
+        
+        </li>
+    </ul>
+</div>

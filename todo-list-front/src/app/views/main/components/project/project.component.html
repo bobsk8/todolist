@@ -1,1 +1,10 @@
-<p>project works!</p>
+<div class="row">
+    <div class="col-sm-3 project-card" *ngFor="let project of projects">        
+        <app-project-card [project]="project" 
+        (removeProject)="removeProject($event)"
+        (setDoneTask)="setDoneTask($event)"
+        (editTask)="editTask($event)"
+        (removeTask)="removeTask($event)"
+        (saveTask)="onSubmit($event)"></app-project-card>
+    </div>
+</div>
