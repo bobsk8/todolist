@@ -4,6 +4,8 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   { path: 'login', loadChildren: () => import('./views/login/login.module').then(m => m.LoginModule) },
   { path: 'register', loadChildren: () => import('./views/register/register.module').then(m => m.RegisterModule) },
+  { path: 'main', redirectTo: 'main/project', pathMatch: 'full' },
+  { path: 'main', loadChildren: () => import('./views/main/main.module').then(m => m.MainModule) },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];
 
