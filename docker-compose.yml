@@ -1,0 +1,28 @@
+version: "3"
+services:
+  rodrigo_app:    
+    restart: always
+    build: .
+    ports:
+      - "3000:3000"
+    links:
+      - db
+    environment:
+      - DB_URL=db_mysql
+    volumes:
+      - ./todo-list-back:/usr/src/app
+      - /usr/src/todo-list-back/app/node_modules
+      
+  db:
+    image: mysql:5.7
+    container_name: db_mysql
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3304:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=todo-list
+
+volumes:
+  db_data:
