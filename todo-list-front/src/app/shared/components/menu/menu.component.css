@@ -5,3 +5,7 @@
 .logout-button {
     cursor: pointer;
 }
+
+.nav-item {
+    cursor: pointer;
+}
