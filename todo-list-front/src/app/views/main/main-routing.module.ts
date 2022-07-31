@@ -19,7 +19,7 @@ const routes: Routes = [
         canLoad: [AuthGuard]
       },
       {
-        path: 'new', loadChildren: () =>
+        path: 'project/new', loadChildren: () =>
           import('./components/project-detail/project-detail.module').then(m => m.ProjectDetailModule),
         canLoad: [AuthGuard]
       }
