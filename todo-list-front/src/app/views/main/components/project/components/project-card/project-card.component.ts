@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { Project } from 'src/app/model/project.model';
-import { Task } from 'src/app/model/user.model';
+import { Task } from 'src/app/model/task.model';
 
 @Component({
   selector: 'app-project-card',

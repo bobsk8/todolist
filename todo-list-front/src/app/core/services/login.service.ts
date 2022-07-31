@@ -4,7 +4,7 @@ import { catchError } from 'rxjs/operators';
 import { Observable, throwError } from 'rxjs';
 
 import { environment } from '../../../environments/environment';
-import { User } from 'src/app/model/task.model';
+import { User } from 'src/app/model/user.model';
 import { LoginReturnDto } from 'src/app/dto/login-return.dto';
 import { LoginDto } from 'src/app/dto/login.dto';
 

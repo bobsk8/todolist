@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { LoginService } from 'src/app/core/services/login.service';
-import { User } from 'src/app/model/task.model';
+import { User } from 'src/app/model/user.model';
 
 @Component({
   selector: 'app-menu',
