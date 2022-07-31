@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { UserService } from 'src/app/core/services/user.service';
 import { User } from 'src/app/model/user.model';
@@ -10,10 +11,11 @@ import { User } from 'src/app/model/user.model';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
 
   submitted = false;
   userForm: FormGroup;
+  private subs: Subscription[] = [];
   constructor(
     private router: Router,
     private userService: UserService,
@@ -22,6 +24,10 @@ export class RegisterComponent implements OnInit {
 
   public ngOnInit(): void {
     this.userForm = this.createForm();
+  }
+
+  public ngOnDestroy(): void {
+    this.subs.forEach(el => el.unsubscribe());
   }
 
   public onSubmit(form: FormGroup): void {
@@ -34,11 +40,12 @@ export class RegisterComponent implements OnInit {
   }
 
   private save(user: User): void {
-    this.userService.create(user)
-    .subscribe(resp => {
-      alert('Salvo com sucesso!');
-      this.router.navigate(['login']);
-    }, err => alert(err.error.message));
+    const sub = this.userService.create(user)
+      .subscribe(() => {
+        alert('Success!');
+        this.router.navigate(['login']);
+      }, err => alert(err.error.message));
+    this.subs.push(sub);
   }
 
   private createForm(): FormGroup {
