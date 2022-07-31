@@ -25,12 +25,12 @@ export class HttpErrorInterceptor implements HttpInterceptor {
           if (error.error instanceof ErrorEvent) {
             // client-side error
             errorMessage = `Error: ${error.error.message}`;
-          } else if (error.error && error.error.message.includes('JWT expired')) {
+          } else if (error?.error?.message?.includes('JWT expired')) {
             errorMessage = 'Session expired, please log in again';
             sessionStorage.clear();
             this.router.navigate(['']);
           } else {
-            errorMessage = error.error.message;
+            errorMessage = 'Oops! something went wrong.';
           }
           this.openErrorDialog(errorMessage);
           return throwError(errorMessage);
