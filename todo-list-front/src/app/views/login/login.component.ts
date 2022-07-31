@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 import { LoginService } from 'src/app/core/services/login.service';
 import { LoginDto } from 'src/app/dto/login.dto';
@@ -10,10 +11,11 @@ import { LoginDto } from 'src/app/dto/login.dto';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   public submitted = false;
   public loginForm: FormGroup;
+  private subs: Subscription[] = [];
   constructor(
     private router: Router,
     private fb: FormBuilder,
@@ -22,6 +24,10 @@ export class LoginComponent implements OnInit {
 
   public ngOnInit(): void {
     this.loginForm = this.createForm();
+  }
+
+  public ngOnDestroy(): void {
+    this.subs.forEach(el => el.unsubscribe());
   }
 
   public onSubmit(form: FormGroup): void {
@@ -34,11 +40,12 @@ export class LoginComponent implements OnInit {
   }
 
   private login(loginDto: LoginDto): void {
-    this.loginService.login(loginDto)
+    const sub = this.loginService.login(loginDto)
     .subscribe(resp => {
       this.loginService.setCurrentUserSession(resp.user, resp.token);
       this.router.navigate(['main/project']);
     });
+    this.subs.push(sub);
   }
 
   private createForm(): FormGroup {
