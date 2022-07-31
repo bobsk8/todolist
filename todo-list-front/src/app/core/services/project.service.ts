@@ -25,7 +25,7 @@ export class ProjectService {
   ) { }
 
   public save(project: Project): Observable<Project> {
-    return this.http.post(`${this.url}/api/project`, project, httpOptions)
+    return this.http.post(`${this.url}/project`, project, httpOptions)
       .pipe(
         catchError(err => {
           console.log('save project ', err);
@@ -35,7 +35,7 @@ export class ProjectService {
   }
 
   public update(id: number, project: Project): Observable<Project> {
-    return this.http.put(`${this.url}/api/project/${id}`, project, httpOptions)
+    return this.http.put(`${this.url}/project/${id}`, project, httpOptions)
       .pipe(
         catchError(err => {
           console.log('update project ', err);
@@ -45,7 +45,7 @@ export class ProjectService {
   }
 
   public getAll(): Observable<Project[]> {
-    return this.http.get<Project[]>(`${this.url}/api/project`, httpOptions)
+    return this.http.get<Project[]>(`${this.url}/project`, httpOptions)
       .pipe(
         catchError(err => {
           console.log('getAll project ', err);
@@ -55,7 +55,7 @@ export class ProjectService {
   }
 
   public delete(projectId: number): Observable<Project> {
-    return this.http.delete(`${this.url}/api/project/${projectId}`, httpOptions)
+    return this.http.delete(`${this.url}/project/${projectId}`, httpOptions)
       .pipe(
         catchError(err => {
           console.log('delete project ', err);
@@ -65,7 +65,7 @@ export class ProjectService {
   }
 
   public getById(id: number): Observable<Project> {
-    return this.http.get<Project>(`${this.url}/api/project/${id}`, httpOptions)
+    return this.http.get<Project>(`${this.url}/project/${id}`, httpOptions)
       .pipe(
         catchError(err => {
           console.log('getById project ', err);
@@ -75,7 +75,7 @@ export class ProjectService {
   }
 
   public addTask(projectId: number, task: any): Observable<Task> {
-    return this.http.post(`${this.url}/api/project/${projectId}/task`, task, httpOptions)
+    return this.http.post(`${this.url}/project/${projectId}/task`, task, httpOptions)
       .pipe(
         catchError(err => {
           console.log('update project ', err);
@@ -85,7 +85,7 @@ export class ProjectService {
   }
 
   public updateTask(taskId: number, task: any): Observable<Task> {
-    return this.http.put(`${this.url}/api/task/${taskId}`, task, httpOptions)
+    return this.http.put(`${this.url}/task/${taskId}`, task, httpOptions)
       .pipe(
         catchError(err => {
           console.log('updateTask project ', err);
@@ -95,7 +95,7 @@ export class ProjectService {
   }
 
   public deleteTask(taskId: number): Observable<Task> {
-    return this.http.delete(`${this.url}/api/task/${taskId}`, httpOptions)
+    return this.http.delete(`${this.url}/task/${taskId}`, httpOptions)
       .pipe(
         catchError(err => {
           console.log('updateTask project ', err);

@@ -24,7 +24,7 @@ export class LoginService {
   ) { }
 
   public login(loginDto: LoginDto): Observable<LoginReturnDto> {
-    return this.http.post<LoginReturnDto>(`${this.url}/api/auth/login`, loginDto, httpOptions)
+    return this.http.post<LoginReturnDto>(`${this.url}/auth/login`, loginDto, httpOptions)
       .pipe(
         catchError(err => {
           console.log('login error: ', err);

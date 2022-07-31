@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiEndPoint: ''
+  apiEndPoint: 'api/v1'
 };
 
 /*

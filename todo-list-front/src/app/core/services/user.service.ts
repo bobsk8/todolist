@@ -23,7 +23,7 @@ export class UserService {
   ) { }
 
   create(user: User): Observable<User> {
-    return this.http.post(`${this.url}/api/user`, user, httpOptions)
+    return this.http.post(`${this.url}/user`, user, httpOptions)
       .pipe(
         catchError(err => {
           console.log('create error: ', err);
