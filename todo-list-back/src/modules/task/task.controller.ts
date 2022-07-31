@@ -16,7 +16,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { Task } from 'src/models/task.model';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
-@Controller('api/task')
+@Controller('task')
 @ApiTags('task')
 export class TaskController {
     constructor(

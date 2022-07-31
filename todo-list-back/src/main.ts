@@ -3,7 +3,9 @@ import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule, {
+    logger: ['error', 'warn'],
+  });
   const options = new DocumentBuilder()
     .addBearerAuth()
     .setTitle('Todo')
@@ -12,6 +14,8 @@ async function bootstrap() {
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document);
+  app.enableCors();
+  app.setGlobalPrefix('api/v1');
   await app.listen(3000);
 }
 bootstrap();

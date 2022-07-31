@@ -19,7 +19,7 @@ import { UpdateProjectDto } from './dto/update-project.dto';
 import { CreateTaskDto } from '../task/dto/create-task.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
-@Controller('api/project')
+@Controller('project')
 @ApiTags('project')
 export class ProjectController {
     constructor(
