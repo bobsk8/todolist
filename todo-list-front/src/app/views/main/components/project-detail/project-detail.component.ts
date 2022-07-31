@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { ProjectService } from 'src/app/core/services/project.service';
 import { Project } from 'src/app/model/project.model';
 
@@ -9,11 +10,12 @@ import { Project } from 'src/app/model/project.model';
   templateUrl: './project-detail.component.html',
   styleUrls: ['./project-detail.component.css']
 })
-export class ProjectDetailComponent implements OnInit {
+export class ProjectDetailComponent implements OnInit, OnDestroy {
 
   public edit = false;
   public submitted = false;
   public projectForm: FormGroup;
+  private subs: Subscription[] = [];
   constructor(
     private projectService: ProjectService,
     private route: ActivatedRoute,
@@ -27,6 +29,10 @@ export class ProjectDetailComponent implements OnInit {
     if (id && id != 'new') {
       this.getProjectById(parseInt(id, 10));
     }
+  }
+
+  public ngOnDestroy(): void {
+    this.subs.forEach(el => el.unsubscribe());
   }
 
   public createForm(): FormGroup {
@@ -50,28 +56,31 @@ export class ProjectDetailComponent implements OnInit {
   }
 
   public getProjectById(id: number): void {
-    this.projectService.getById(id)
-    .subscribe(resp => {
-      this.projectForm.get('name').setValue(resp.name);
-      this.projectForm.get('id').setValue(resp.id);
-      this.edit = true;
-    });
+    const sub = this.projectService.getById(id)
+      .subscribe(resp => {
+        this.projectForm.get('name').setValue(resp.name);
+        this.projectForm.get('id').setValue(resp.id);
+        this.edit = true;
+      });
+    this.subs.push(sub);
   }
 
   private saveProject(project: Project): void {
-    this.projectService.save(project)
-    .subscribe(() => {
-      alert('Project save!');
-      this.router.navigate(['main/project']);
-    });
+    const sub = this.projectService.save(project)
+      .subscribe(() => {
+        alert('Project save!');
+        this.router.navigate(['main/project']);
+      });
+    this.subs.push(sub);
   }
 
   private editProject(project: Project): void {
-    this.projectService.update(project.id, project)
-    .subscribe(() => {
-      alert('Project update!');
-      this.router.navigate(['main/project']);
-    });
+    const sub = this.projectService.update(project.id, project)
+      .subscribe(() => {
+        alert('Project update!');
+        this.router.navigate(['main/project']);
+      });
+    this.subs.push(sub);
   }
 
 }
