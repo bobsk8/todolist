@@ -25,7 +25,7 @@ export class ProjectComponent implements OnInit {
     const task = event.task;
     if (!task.description) {
       return;
-    }    
+    }
     if (task.id) {
       this.updateTask(project, task);
     } else {
