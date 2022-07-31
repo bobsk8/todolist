@@ -26,7 +26,7 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.projectForm = this.createForm();
     const id = this.route.snapshot.paramMap.get('id');
-    if (id && id != 'new') {
+    if (id && id !== 'new') {
       this.getProjectById(parseInt(id, 10));
     }
   }

@@ -23,12 +23,12 @@ export class MenuComponent implements OnInit {
     this.user = this.storageService.getUserSession();
   }
 
-  public logout(): void {    
+  public logout(): void {
     this.loginService.logout()
-    .subscribe(() => {
-      this.router.navigate(['']);
-      sessionStorage.clear();
-    }, err => console.log(err));
+      .subscribe(() => {
+        this.router.navigate(['']);
+        sessionStorage.clear();
+      }, err => console.log(err));
   }
 
 }
