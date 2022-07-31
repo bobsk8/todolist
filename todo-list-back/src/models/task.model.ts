@@ -11,22 +11,22 @@ import { Project } from './project.model';
 @Entity()
 export class Task {
   @PrimaryGeneratedColumn()
-  id: number;
+  public id: number;
 
   @Column({ type: 'varchar', nullable: false })
-  description: string;
+  public description: string;
 
   @Column({ type: 'boolean', default: false })
-  completed: boolean;
+  public completed: boolean;
 
   @ManyToOne((type) => Project, (project) => project.tasks, {
     onDelete: "CASCADE"
-})
-  project: Project;
+  })
+  public project: Project;
 
   @CreateDateColumn()
-  createdAt: Date;
+  public createdAt: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  public updatedAt: Date;
 }

@@ -4,20 +4,20 @@ import { Project } from './project.model';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
-  id: number;
+  public id: number;
 
   @Column({ type: 'varchar', nullable: false })
-  name: string;
+  public name: string;
 
   @Column({ type: 'varchar', unique: true, nullable: false })
-  username: string;
+  public username: string;
 
   @Column({ type: 'varchar', nullable: false })
-  password: string;
+  public password: string;
 
   @Column({ type: 'varchar', nullable: false })
-  token: string;
+  public token: string;
 
   @OneToMany((type) => Project, (project) => project.user)
-  projects: Project[];
+  public projects: Project[];
 }

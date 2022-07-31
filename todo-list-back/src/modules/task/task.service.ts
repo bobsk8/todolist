@@ -12,7 +12,7 @@ export class TaskService {
         private taskRepository: Repository<Task>,
     ) { }
 
-    save(task: any): Promise<Task> {
+    public save(task: any): Promise<Task> {
         try {
             const resp = this.taskRepository.save(task);
             return resp;
@@ -24,7 +24,7 @@ export class TaskService {
         }
     }
 
-    findAll(): Promise<Task[]> {
+    public findAll(): Promise<Task[]> {
         try {
             const resp = this.taskRepository.find();
             return resp;
@@ -36,7 +36,7 @@ export class TaskService {
         }
     }
 
-    findOne(id: number): Promise<Task> {
+    public findOne(id: number): Promise<Task> {
         try {
             const resp = this.taskRepository.findOne(id);
             return resp;
@@ -48,7 +48,7 @@ export class TaskService {
         }
     }
 
-    async remove(id: number): Promise<void> {
+    public async remove(id: number): Promise<void> {
         try {
             this.taskRepository.delete(id);
         } catch (err) {
@@ -59,7 +59,7 @@ export class TaskService {
         }
     }
 
-    async update(id: number, task: UpdateTaskDto): Promise<Task> {
+    public async update(id: number, task: UpdateTaskDto): Promise<Task> {
         try {
             const taskSaved = await this.taskRepository.findOne(id); 
             taskSaved.description = task.description;
@@ -73,7 +73,7 @@ export class TaskService {
         }
     }
 
-    async findByProjectId(projectId: string): Promise<Task[]> {
+    public async findByProjectId(projectId: string): Promise<Task[]> {
         try {
             const resp = this.taskRepository.find({ relations: ['task'], where: { project: { id: projectId } } });
             return resp;

@@ -29,41 +29,41 @@ export class ProjectController {
     @Post()
     @UsePipes(ValidationPipe)
     @UseGuards(AuthGuard)
-    create(@Body() createProjectDto: CreateProjectDto, @Request() req) {
+    public create(@Body() createProjectDto: CreateProjectDto, @Request() req) {
         const id = req.user.id;
         return this.projectService.save(createProjectDto, id);
     }
 
     @Get()
     @UseGuards(AuthGuard)
-    findAll(@Request() req) {
+    public findAll(@Request() req) {
         const userId = req.user.id;
         return this.projectService.findByUserId(userId);
     }
 
     @Get(':id')
     @UseGuards(AuthGuard)
-    findOne(@Param('id') id) {
+    public findOne(@Param('id') id) {
         return this.projectService.findOne(id);
     }
 
     @Put(':id')
     @UseGuards(AuthGuard)
     @UsePipes(ValidationPipe)
-    update(@Param('id') id: number, @Body() updateProjectDto: UpdateProjectDto) {
+    public update(@Param('id') id: number, @Body() updateProjectDto: UpdateProjectDto) {
         return this.projectService.update(id, updateProjectDto);
     }
 
     @Delete(':id')
     @UseGuards(AuthGuard)
-    remove(@Param('id') id: number) {
+    public remove(@Param('id') id: number) {
         return this.projectService.remove(id);
     }
 
     @Post(':id/task')
     @UseGuards(AuthGuard)
     @UsePipes(ValidationPipe)
-    createTask(@Param('id') id: number, @Body() createTaskDto: CreateTaskDto) {
+    public createTask(@Param('id') id: number, @Body() createTaskDto: CreateTaskDto) {
         return this.projectService.saveTask(id, createTaskDto);
     }
 }
