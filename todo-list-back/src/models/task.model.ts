@@ -19,7 +19,9 @@ export class Task {
   @Column({ type: 'boolean', default: false })
   completed: boolean;
 
-  @ManyToOne((type) => Project, (project) => project.tasks)
+  @ManyToOne((type) => Project, (project) => project.tasks, {
+    onDelete: "CASCADE"
+})
   project: Project;
 
   @CreateDateColumn()
