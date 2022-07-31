@@ -57,11 +57,19 @@ export class ProjectComponent implements OnInit {
   }
 
   public removeProject(projectId: number): void {
+    const isRemove = confirm('Are you sure about that?');
+    if (!isRemove) {
+      return;
+    }
     this.projectService.delete(projectId)
       .subscribe(() => this.projects = this.projects.filter(project => project.id !== projectId));
   }
 
   public removeTask(event: any): void {
+    const isRemove = confirm('Are you sure about that?');
+    if (!isRemove) {
+      return;
+    }
     const project = event.project;
     const id = event.id;
     this.projectService.deleteTask(id)
