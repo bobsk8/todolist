@@ -5,7 +5,7 @@ import { UserService } from '../user/user.service';
 import { CredentialsDto } from './dto/credentials.dto';
 import { User } from '../../models/user.model';
 import { LoginUserDto } from './dto/login-user.dto';
-import { passwordHash } from 'src/shared/helpers';
+import { passwordCompare } from 'src/shared/helpers';
 
 @Injectable()
 export class AuthService {
@@ -18,7 +18,8 @@ export class AuthService {
         const { username, password } = credentialsDto;
         try {
             const user = await this.userService.findByUserName(username);
-            if (user && user.password === passwordHash(password)) {
+            const isValid = await passwordCompare(password, user.password);
+            if (user && isValid) {
                 return user;
             } else {
                 return null;

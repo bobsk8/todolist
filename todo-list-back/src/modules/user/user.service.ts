@@ -16,7 +16,7 @@ export class UserService {
 
   public async save(user: CreateUserDto): Promise<User> {
     try {
-      user.password = passwordHash(user.password);
+      user.password = await passwordHash(user.password);
       const resp = await this.usersRepository.save(user);
       delete resp.password;
       return resp;
