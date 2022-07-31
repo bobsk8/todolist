@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, UnauthorizedException } from '@nestjs/common';
 
 import { UserService } from '../user/user.service';
 import { CredentialsDto } from './dto/credentials.dto';
@@ -6,6 +6,7 @@ import { User } from '../../models/user.model';
 import { LoginUserDto } from './dto/login-user.dto';
 import { passwordCompare } from 'src/shared/helpers';
 import { generateHashToken } from './jwt-generate';
+import { LogoutUserDto } from './logout-user.dto';
 
 @Injectable()
 export class AuthService {
@@ -48,5 +49,16 @@ export class AuthService {
             throw new UnauthorizedException(`username or password is incorrect`);;
         }
 
+    }
+
+    public async logout(user: User): Promise<LogoutUserDto> {
+        try {            
+            return this.userService.removeToken(user.id);
+        } catch (err) {
+            throw new HttpException({
+                status: HttpStatus.FORBIDDEN,
+                error: err.errmsg,
+            }, HttpStatus.FORBIDDEN);
+        }
     }
 }
