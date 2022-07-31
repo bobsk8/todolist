@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     this.loginService.login(loginDto)
     .subscribe(resp => {
       this.loginService.setCurrentUserSession(resp.user, resp.token);
-      this.router.navigate(['project']);
+      this.router.navigate(['main/project']);
     });
   }
 
