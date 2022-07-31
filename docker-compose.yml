@@ -18,11 +18,13 @@ services:
     container_name: db_mysql
     volumes:
       - db_data:/var/lib/mysql
+      - ./init.sql:/data/application/init/init.sql
+    restart: always
     ports:
       - "3304:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=todo-list
+      - MYSQL_DATABASE=todolist
 
 volumes:
   db_data:
