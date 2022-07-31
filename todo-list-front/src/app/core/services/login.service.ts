@@ -32,4 +32,14 @@ export class LoginService {
         })
       );
   }
+
+  public logout(): Observable<any> {
+    return this.http.post<any>(`${this.url}/auth/logout`, { isLogout: true }, httpOptions)
+      .pipe(
+        catchError(err => {
+          console.log('logout error: ', err);
+          return throwError(err);
+        })
+      );
+  }
 }

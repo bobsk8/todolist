@@ -6,6 +6,7 @@ import { User } from 'src/models/user.model';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { passwordHash } from 'src/shared/helpers';
+import { LogoutUserDto } from '../auth/logout-user.dto';
 
 @Injectable()
 export class UserService {
@@ -112,6 +113,22 @@ export class UserService {
       userSaved.name = user.name;
       const resp = this.usersRepository.save(user);
       return resp;
+    } catch (err) {
+      throw new HttpException(
+        {
+          status: HttpStatus.FORBIDDEN,
+          error: err.errmsg,
+        },
+        HttpStatus.FORBIDDEN,
+      );
+    }
+  }
+
+  public async removeToken(id: number): Promise<LogoutUserDto> {
+    try {
+      await this.usersRepository.update(id, { token: '' });
+      const logoutUser = new LogoutUserDto();
+      return logoutUser;
     } catch (err) {
       throw new HttpException(
         {
