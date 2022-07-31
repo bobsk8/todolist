@@ -11,35 +11,41 @@ import { Task } from 'src/app/model/user.model';
 export class ProjectCardComponent implements OnInit {
 
   @Input() public project = new Project();
-  @Output() public removeProject = new EventEmitter();
+  @Output() public removeProjectEvent = new EventEmitter();
   @Output() public setDoneTask = new EventEmitter();
-  @Output() public editTask = new EventEmitter();
-  @Output() public removeTask = new EventEmitter();
-  @Output() public saveTask = new EventEmitter();
+  @Output() public removeTaskEvent = new EventEmitter();
+  @Output() public saveTaskEvent = new EventEmitter();
+
+  public task: Task;
 
   constructor() { }
 
   public ngOnInit(): void {
+    this.task = new Task();
   }
 
-  public removeP(id: number): void {
-    this.removeProject.emit(id);
+  public removeProject(id: number): void {
+    this.removeProjectEvent.emit(id);
   }
 
   public setDoneT(project: Project, task: Task): void {
     this.setDoneTask.emit({ project, task });
   }
 
-  public editT(project: Project, task: Task): void {
-    this.editTask.emit({ project, task });
+  public editTask(task: Task): void {
+    this.task = { ...task };
   }
 
-  public removeT(project: Project, id: string): void {
-    this.removeTask.emit({ project, id });
+  public removeTask(project: Project, id: string): void {
+    this.removeTaskEvent.emit({ project, id });
   }
 
-  public saveT(project: Project): void {
-    this.saveTask.emit({ project });
+  public saveTask(project: Project, task: Task): void {
+    if (!task.id) {
+      task.project.id = project.id;
+    }
+    this.saveTaskEvent.emit({ task, project });
+    this.task = new Task();
   }
 
 }

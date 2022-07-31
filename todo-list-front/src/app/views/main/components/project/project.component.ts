@@ -22,11 +22,10 @@ export class ProjectComponent implements OnInit {
 
   public onSubmit(event: any): void {
     const project = event.project;
-    if (!project.taskDescription) {
+    const task = event.task;
+    if (!task.description) {
       return;
-    }
-    const task = Object.assign(new Task(),
-      { id: project.taskId, description: project.taskDescription, completed: false });
+    }    
     if (task.id) {
       this.updateTask(project, task);
     } else {
@@ -38,7 +37,6 @@ export class ProjectComponent implements OnInit {
     this.projectService.addTask(project.id, task)
       .subscribe(resp => {
         project.tasks.push(resp);
-        project.taskDescription = '';
       });
   }
 
@@ -50,7 +48,6 @@ export class ProjectComponent implements OnInit {
             ts.description = task.description;
           }
         });
-        project.taskDescription = '';
       });
   }
 
@@ -71,13 +68,6 @@ export class ProjectComponent implements OnInit {
       .subscribe(() => {
         project.tasks = project.tasks.filter(task => task.id !== id);
       });
-  }
-
-  public editTask(event: any): void {
-    const project = event.project;
-    const task = event.task;
-    project.taskId = task.id;
-    project.taskDescription = task.description;
   }
 
   public setDoneTask(event: any): void {

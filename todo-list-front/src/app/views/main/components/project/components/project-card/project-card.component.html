@@ -5,10 +5,10 @@
                 {{project.name}}
             </div>
             <div class="col-sm-2">
-                <i class="fas fa-edit" routerLink="/project/{{project.id}}"></i>
+                <i class="fas fa-edit" routerLink="/main/project/{{project.id}}"></i>
             </div>
             <div class="col-sm-2">
-                <i class="fas fa-trash" (click)="removeP(project.id)"></i>
+                <i class="fas fa-trash" (click)="removeProject(project.id)"></i>
             </div>
         </div>
     </div>
@@ -16,7 +16,7 @@
         <li class="list-group-item">
             TODO <br>
             <div *ngFor="let task of project.tasks">
-                <div *ngIf="!task.completed">                            
+                <div *ngIf="!task.completed">
                     <div class="row todo-itens">
                         <div class="col-sm-2">
                             <input type="checkbox" name="" id="" (change)="setDoneT(project, task)">
@@ -25,10 +25,10 @@
                             {{task.description}}
                         </div>
                         <div class="col-sm-2">
-                            <i class="fas fa-edit" (click)="editT(project, task)"></i>
+                            <i class="fas fa-edit" (click)="editTask(task)"></i>
                         </div>
                         <div class="col-sm-2">
-                            <i class="fas fa-trash" (click)="removeT(project, task.id)"></i>
+                            <i class="fas fa-trash" (click)="removeTask(project, task.id)"></i>
                         </div>
                     </div>
                 </div>
@@ -52,16 +52,17 @@
                 </div>
             </div>
         </li>
-        <li class="list-group-item">                    
-            <div class="row">                        
+        <li class="list-group-item">
+            <div class="row">
                 <div class="col-sm-8">
-                    <input type="text" [(ngModel)]="project.taskDescription" class="form-control" name="description" placeholder="Task Description" />                
+                    <input type="text" [(ngModel)]="task.description" class="form-control" name="description"
+                        placeholder="Task Description" />
                 </div>
                 <div class="col-sm-4">
-                    <button class="btn btn-primary" (click)="saveT(project)">Save</button>
-                </div>                        
+                    <button class="btn btn-primary" (click)="saveTask(project, task)">Save</button>
+                </div>
             </div>
-        
+
         </li>
     </ul>
 </div>

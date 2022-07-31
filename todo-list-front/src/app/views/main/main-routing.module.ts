@@ -14,7 +14,7 @@ const routes: Routes = [
         canLoad: [AuthGuard]
       },
       {
-        path: ':id', loadChildren: () =>
+        path: 'project/:id', loadChildren: () =>
           import('./components/project-detail/project-detail.module').then(m => m.ProjectDetailModule),
         canLoad: [AuthGuard]
       },

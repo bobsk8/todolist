@@ -5,5 +5,7 @@ export class User {
         public id?: number,
         public name?: string,
         public tasks?: Task[]
-    ) {}
+    ) {
+        this.tasks = [];
+    }
 }
