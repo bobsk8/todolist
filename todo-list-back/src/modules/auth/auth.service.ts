@@ -18,8 +18,13 @@ export class AuthService {
         const { username, password } = credentialsDto;
         try {
             const user = await this.userService.findByUserName(username);
+
+            if (!user) {
+                return null;
+            }
+
             const isValid = await passwordCompare(password, user.password);
-            if (user && isValid) {
+            if (isValid) {
                 return user;
             } else {
                 return null;
