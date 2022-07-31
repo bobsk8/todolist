@@ -5,8 +5,8 @@ import { Task } from 'src/app/model/user.model';
 
 @Component({
   selector: 'app-project-card',
-  templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  templateUrl: './project-card.component.html',
+  styleUrls: ['./project-card.component.css']
 })
 export class ProjectCardComponent implements OnInit {
 
