@@ -24,32 +24,32 @@ export class UserController {
 
   @Post()
   @UsePipes(ValidationPipe)
-  create(@Body() createUserDto: CreateUserDto) {
+  public create(@Body() createUserDto: CreateUserDto) {
     return this.userService.save(createUserDto);
   }
 
   @Get()
   @UseGuards(JwtAuthGuard)
-  findAll() {
+  public findAll() {
     return this.userService.findAll();
   }
 
   @Get(':id')
   @UseGuards(JwtAuthGuard)
-  findOne(@Param('id') id: number) {
+  public findOne(@Param('id') id: number) {
     return this.userService.findOne(id);
   }
 
   @Put(':id')
   @UseGuards(JwtAuthGuard)
   @UsePipes(ValidationPipe)
-  update(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto) {
+  public update(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(id, updateUserDto);
   }
 
   @Delete(':id')
   @UseGuards(JwtAuthGuard)
-  remove(@Param('id') id: number) {
+  public remove(@Param('id') id: number) {
     return this.userService.remove(id);
   }
 }

@@ -19,7 +19,7 @@ export class ProjectService {
         private projectRepository: Repository<Project>
     ) { }
 
-    async save(project: CreateProjectDto, id: number): Promise<Project> {
+    public async save(project: CreateProjectDto, id: number): Promise<Project> {
         try {
             const user = await this.userService.findOne(id);
             project.user = user;
@@ -33,7 +33,7 @@ export class ProjectService {
 
     }
 
-    async findByUserId(id: number): Promise<Project[]> {
+    public async findByUserId(id: number): Promise<Project[]> {
         try {
             return this.projectRepository
                 .createQueryBuilder('project')
@@ -48,7 +48,7 @@ export class ProjectService {
         }
     }
 
-    async findOne(id: number): Promise<Project> {
+    public async findOne(id: number): Promise<Project> {
         try {
             return this.projectRepository.findOne({ where: { id } });
         } catch (err) {
@@ -59,7 +59,7 @@ export class ProjectService {
         }
     }
 
-    async remove(id: number): Promise<void> {
+    public async remove(id: number): Promise<void> {
         try {
             this.projectRepository.delete(id);
         } catch (err) {
@@ -70,7 +70,7 @@ export class ProjectService {
         }
     }
 
-    async update(id: number, project: UpdateProjectDto): Promise<Project> {
+    public async update(id: number, project: UpdateProjectDto): Promise<Project> {
         try {
             const projectSave = await this.projectRepository.findOne(id);
             projectSave.name = project.name;
@@ -83,7 +83,7 @@ export class ProjectService {
         }
     }
 
-    async saveTask(id: number, createTask: CreateTaskDto) {
+    public async saveTask(id: number, createTask: CreateTaskDto) {
         try {
             const project = await this.projectRepository.findOne(id);
             const task = new Task();

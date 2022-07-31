@@ -11,14 +11,14 @@ import { User } from './user.model';
 @Entity()
 export class Project {
   @PrimaryGeneratedColumn()
-  id: number;
+  public id: number;
 
   @Column({ type: 'varchar', nullable: false })
-  name: string;
+  public name: string;
 
   @OneToMany((type) => Task, (task) => task.project)
-  tasks: Task[];
+  public tasks: Task[];
 
   @ManyToOne((type) => User, (user) => user.projects)
-  user: User;
+  public user: User;
 }
