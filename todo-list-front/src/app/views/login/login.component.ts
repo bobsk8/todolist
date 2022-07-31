@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { LoginService } from 'src/app/core/services/login.service';
+import { StorageService } from 'src/app/core/services/storage.service';
 import { LoginDto } from 'src/app/dto/login.dto';
 
 @Component({
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private storageService: StorageService
   ) { }
 
   public ngOnInit(): void {
@@ -42,7 +44,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   private login(loginDto: LoginDto): void {
     const sub = this.loginService.login(loginDto)
     .subscribe(resp => {
-      this.loginService.setCurrentUserSession(resp.user, resp.token);
+      this.storageService.setCurrentUserSession(resp.user, resp.token);
       this.router.navigate(['main/project']);
     });
     this.subs.push(sub);

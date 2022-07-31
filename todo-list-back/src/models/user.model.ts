@@ -15,6 +15,9 @@ export class User {
   @Column({ type: 'varchar', nullable: false })
   password: string;
 
+  @Column({ type: 'varchar', nullable: false })
+  token: string;
+
   @OneToMany((type) => Project, (project) => project.user)
   projects: Project[];
 }

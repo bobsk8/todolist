@@ -17,7 +17,7 @@ import { ProjectService } from './project.service';
 import { CreateProjectDto } from './dto/create-project.dto';
 import { UpdateProjectDto } from './dto/update-project.dto';
 import { CreateTaskDto } from '../task/dto/create-task.dto';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { AuthGuard } from 'src/guards/auth.guard';
 
 @Controller('api/project')
 @ApiTags('project')
@@ -28,40 +28,40 @@ export class ProjectController {
 
     @Post()
     @UsePipes(ValidationPipe)
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(AuthGuard)
     create(@Body() createProjectDto: CreateProjectDto, @Request() req) {
-        const id = req.user.userId;
+        const id = req.user.id;
         return this.projectService.save(createProjectDto, id);
     }
 
     @Get()
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(AuthGuard)
     findAll(@Request() req) {
-        const userId = req.user.userId;
+        const userId = req.user.id;
         return this.projectService.findByUserId(userId);
     }
 
     @Get(':id')
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(AuthGuard)
     findOne(@Param('id') id) {
         return this.projectService.findOne(id);
     }
 
     @Put(':id')
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(AuthGuard)
     @UsePipes(ValidationPipe)
     update(@Param('id') id: number, @Body() updateProjectDto: UpdateProjectDto) {
         return this.projectService.update(id, updateProjectDto);
     }
 
     @Delete(':id')
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(AuthGuard)
     remove(@Param('id') id: number) {
         return this.projectService.remove(id);
     }
 
     @Post(':id/task')
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(AuthGuard)
     @UsePipes(ValidationPipe)
     createTask(@Param('id') id: number, @Body() createTaskDto: CreateTaskDto) {
         return this.projectService.saveTask(id, createTaskDto);

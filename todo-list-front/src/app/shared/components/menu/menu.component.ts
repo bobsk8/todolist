@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { StorageService } from 'src/app/core/services/storage.service';
 
-import { LoginService } from 'src/app/core/services/login.service';
-import { User } from 'src/app/model/task.model';
+import { User } from 'src/app/model/user.model';
 
 @Component({
   selector: 'app-menu',
@@ -14,11 +14,11 @@ export class MenuComponent implements OnInit {
   public user: User;
   constructor(
     private router: Router,
-    private loginService: LoginService
+    private storageService: StorageService
   ) { }
 
   public ngOnInit(): void {
-    this.user = this.loginService.getUserSession();
+    this.user = this.storageService.getUserSession();
   }
 
   public logout(): void {

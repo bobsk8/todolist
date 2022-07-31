@@ -3,7 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { UserService } from 'src/app/core/services/user.service';
-import { User } from 'src/app/model/task.model';
+import { User } from 'src/app/model/user.model';
 
 @Component({
   selector: 'app-register',

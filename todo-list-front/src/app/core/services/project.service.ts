@@ -5,7 +5,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 import { environment } from '../../../environments/environment';
 import { Project } from 'src/app/model/project.model';
-import { Task } from 'src/app/model/user.model';
+import { Task } from 'src/app/model/task.model';
 
 
 const httpOptions = {

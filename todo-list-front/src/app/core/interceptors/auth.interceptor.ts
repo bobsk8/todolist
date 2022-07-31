@@ -6,21 +6,22 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 
-import { LoginService } from '../services/login.service';
+import { StorageService } from '../services/storage.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
-    private loginService: LoginService
+    private storageService: StorageService
   ) { }
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): import('rxjs').Observable<HttpEvent<any>> {
-    const token = this.loginService.getUserSessionToken();
-    if (token) {
+    const user = this.storageService.getUserSession();
+    if (user?.token) {
       req = req.clone({
         setHeaders: {
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${user.token}`,
+          userid: `${user.id}`
         }
       });
     }

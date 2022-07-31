@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ProjectService } from 'src/app/core/services/project.service';
 import { Project } from 'src/app/model/project.model';
-import { Task } from 'src/app/model/user.model';
+import { Task } from 'src/app/model/task.model';
 
 @Component({
   selector: 'app-project',

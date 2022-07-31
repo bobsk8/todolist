@@ -1,11 +1,15 @@
-import { Task } from './user.model';
+import { Project } from "./project.model";
 
-export class User {
+export class Task {
     constructor(
         public id?: number,
-        public name?: string,
-        public tasks?: Task[]
+        public description?: string,
+        public completed?: boolean,        
+        public project?: Project,
+        public createdAt?: Date,
+        public updatedAt?: Date,
     ) {
-        this.tasks = [];
-    }
+        this.project = new Project();
+        this.completed = false;
+     }
 }

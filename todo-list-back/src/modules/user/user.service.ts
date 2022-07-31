@@ -77,6 +77,21 @@ export class UserService {
     }
   }
 
+  public findUserByIdAndToken(token: string, id: string): Promise<User> {
+    try {
+      const resp = this.usersRepository.findOne({ where: { token, id } });
+      return resp;
+    } catch (err) {
+      throw new HttpException(
+        {
+          status: HttpStatus.FORBIDDEN,
+          error: err.errmsg,
+        },
+        HttpStatus.FORBIDDEN,
+      );
+    }
+  }
+
   public async remove(id: number): Promise<void> {
     try {
       this.usersRepository.delete(id);

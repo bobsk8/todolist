@@ -1,4 +1,4 @@
-import { Task } from './user.model';
+import { Task } from './task.model';
 
 export class Project {
     constructor(
