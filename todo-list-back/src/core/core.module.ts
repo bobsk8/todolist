@@ -1,5 +1,5 @@
-import { MiddlewareConsumer, Module } from '@nestjs/common';
-import { APP_FILTER } from '@nestjs/core';
+import { MiddlewareConsumer, Module, ValidationPipe } from '@nestjs/common';
+import { APP_FILTER, APP_PIPE } from '@nestjs/core';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
@@ -30,6 +30,10 @@ import { LoggerMiddleware } from './middlewares/logger.middleware';
         {
             provide: APP_FILTER,
             useClass: HttpExceptionFilter,
+        },
+        {
+            provide: APP_PIPE,
+            useClass: ValidationPipe,
         },
     ]
 })
