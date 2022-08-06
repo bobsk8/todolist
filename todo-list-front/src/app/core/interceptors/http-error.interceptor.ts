@@ -22,13 +22,13 @@ export class HttpErrorInterceptor implements HttpInterceptor {
       .pipe(
         catchError((error: HttpErrorResponse) => {
           let errorMessage = '';
-          if (error.error instanceof ErrorEvent) {
-            // client-side error
-            errorMessage = `Error: ${error.error.message}`;
-          } else if (error?.error?.message?.includes('JWT expired')) {
+
+          if (error?.error?.message?.includes('JWT expired')) {
             errorMessage = 'Session expired, please log in again';
             sessionStorage.clear();
             this.router.navigate(['']);
+          } else if (error?.error?.message) {
+            errorMessage = `Error: ${error.error.message}`;
           } else {
             errorMessage = 'Oops! something went wrong.';
           }
