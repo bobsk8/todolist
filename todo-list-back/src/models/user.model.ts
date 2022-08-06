@@ -15,7 +15,7 @@ export class User {
   @Column({ type: 'varchar', nullable: false })
   public password: string;
 
-  @Column({ type: 'varchar', nullable: false })
+  @Column({ type: 'varchar', nullable: true })
   public token: string;
 
   @OneToMany((type) => Project, (project) => project.user)
