@@ -4,8 +4,8 @@ export class User {
     constructor(
         public id?: number,
         public name?: string,
-        public tasks?: Task[]
+        public projects?: Task[]
     ) {
-        this.tasks = [];
+        this.projects = [];
     }
 }
