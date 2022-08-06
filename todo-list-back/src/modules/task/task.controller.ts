@@ -7,7 +7,8 @@ import {
     UseGuards,
     Param,
     Put,
-    Delete
+    Delete,
+    ParseIntPipe
 } from '@nestjs/common';
 
 import { TaskService } from './task.service';
@@ -25,7 +26,7 @@ export class TaskController {
 
     @Get(':id')
     @UseGuards(JwtAuthGuard)
-    public findOne(@Param('id') id: number): Promise<Task> {
+    public findOne(@Param('id', ParseIntPipe) id: number): Promise<Task> {
         return this.taskService.findOne(id);
     }
 
@@ -38,13 +39,13 @@ export class TaskController {
     @Put(':id')
     @UseGuards(JwtAuthGuard)
     @UsePipes(ValidationPipe)
-    public update(@Param('id') id: number, @Body() updateTaskDto: UpdateTaskDto): Promise<Task> {
+    public update(@Param('id', ParseIntPipe) id: number, @Body() updateTaskDto: UpdateTaskDto): Promise<Task> {
         return this.taskService.update(id, updateTaskDto);
     }
 
     @Delete(':id')
     @UseGuards(JwtAuthGuard)
-    public remove(@Param('id') id: number): Promise<void> {
+    public remove(@Param('id', ParseIntPipe) id: number): Promise<void> {
         return this.taskService.remove(id);
     }
 }

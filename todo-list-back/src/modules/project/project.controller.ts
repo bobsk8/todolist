@@ -9,7 +9,8 @@ import {
     Put,
     Delete,
     UseGuards,
-    Request
+    Request,
+    ParseIntPipe
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
@@ -43,27 +44,27 @@ export class ProjectController {
 
     @Get(':id')
     @UseGuards(JwtAuthGuard)
-    public findOne(@Param('id') id) {
+    public findOne(@Param('id', ParseIntPipe) id) {
         return this.projectService.findOne(id);
     }
 
     @Put(':id')
     @UseGuards(JwtAuthGuard)
     @UsePipes(ValidationPipe)
-    public update(@Param('id') id: number, @Body() updateProjectDto: UpdateProjectDto) {
+    public update(@Param('id', ParseIntPipe) id: number, @Body() updateProjectDto: UpdateProjectDto) {
         return this.projectService.update(id, updateProjectDto);
     }
 
     @Delete(':id')
     @UseGuards(JwtAuthGuard)
-    public remove(@Param('id') id: number) {
+    public remove(@Param('id', ParseIntPipe) id: number) {
         return this.projectService.remove(id);
     }
 
     @Post(':id/task')
     @UseGuards(JwtAuthGuard)
     @UsePipes(ValidationPipe)
-    public createTask(@Param('id') id: number, @Body() createTaskDto: CreateTaskDto) {
+    public createTask(@Param('id', ParseIntPipe) id: number, @Body() createTaskDto: CreateTaskDto) {
         return this.projectService.saveTask(id, createTaskDto);
     }
 }

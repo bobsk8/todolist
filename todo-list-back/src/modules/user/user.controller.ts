@@ -9,6 +9,7 @@ import {
   Put,
   Delete,
   UseGuards,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
@@ -36,20 +37,20 @@ export class UserController {
 
   @Get(':id')
   @UseGuards(JwtAuthGuard)
-  public findOne(@Param('id') id: number) {
+  public findOne(@Param('id', ParseIntPipe) id: number) {
     return this.userService.findOne(id);
   }
 
   @Put(':id')
   @UseGuards(JwtAuthGuard)
   @UsePipes(ValidationPipe)
-  public update(@Param('id') id: number, @Body() updateUserDto: UpdateUserDto) {
+  public update(@Param('id', ParseIntPipe) id: number, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(id, updateUserDto);
   }
 
   @Delete(':id')
   @UseGuards(JwtAuthGuard)
-  public remove(@Param('id') id: number) {
+  public remove(@Param('id', ParseIntPipe) id: number) {
     return this.userService.remove(id);
   }
 }
