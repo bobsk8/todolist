@@ -48,7 +48,7 @@ export class UserService {
 
   public async findOne(id: number): Promise<User> {
     try {
-      const resp = await this.usersRepository.findOne(id);
+      const resp = await this.usersRepository.findOne({ where: { id } });
       delete resp.password;
       return resp;
     } catch (err) {
@@ -93,7 +93,7 @@ export class UserService {
 
   public async update(id: number, user: UpdateUserDto): Promise<User> {
     try {
-      const userSaved = await this.usersRepository.findOne(id);
+      const userSaved = await this.usersRepository.findOne({ where: { id } });
       userSaved.name = user.name;
       const resp = this.usersRepository.save(user);
       return resp;

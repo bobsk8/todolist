@@ -38,7 +38,7 @@ export class TaskService {
 
     public findOne(id: number): Promise<Task> {
         try {
-            const resp = this.taskRepository.findOne(id);
+            const resp = this.taskRepository.findOne({ where: { id } });
             return resp;
         } catch (err) {
             throw new HttpException({
@@ -61,7 +61,7 @@ export class TaskService {
 
     public async update(id: number, task: UpdateTaskDto): Promise<Task> {
         try {
-            const taskSaved = await this.taskRepository.findOne(id); 
+            const taskSaved = await this.taskRepository.findOne({ where: { id } });
             taskSaved.description = task.description;
             taskSaved.completed = task.completed;
             return this.taskRepository.save(taskSaved);
@@ -73,9 +73,9 @@ export class TaskService {
         }
     }
 
-    public async findByProjectId(projectId: string): Promise<Task[]> {
+    public async findByProjectId(projectId: number): Promise<Task[]> {
         try {
-            const resp = this.taskRepository.find({ relations: ['task'], where: { project: { id: projectId } } });
+            const resp = this.taskRepository.find({ where: { projectId } });
             return resp;
         } catch (err) {
             throw new HttpException({

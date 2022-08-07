@@ -73,7 +73,7 @@ export class ProjectService {
 
     public async update(id: number, project: UpdateProjectDto): Promise<Project> {
         try {
-            const projectSave = await this.projectRepository.findOne(id);
+            const projectSave = await this.projectRepository.findOne({ where: { id } });
             projectSave.name = project.name;
             return this.projectRepository.save(projectSave);
         } catch (err) {
@@ -86,7 +86,7 @@ export class ProjectService {
 
     public async saveTask(id: number, createTask: CreateTaskDto) {
         try {
-            const project = await this.projectRepository.findOne(id);
+            const project = await this.projectRepository.findOne({ where: { id } });
             const task = new Task();
             task.description = createTask.description;
             task.project = project;

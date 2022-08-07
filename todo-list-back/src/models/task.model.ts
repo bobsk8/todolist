@@ -19,6 +19,9 @@ export class Task {
   @Column({ type: 'boolean', default: false })
   public completed: boolean;
 
+  @Column({ type: 'varchar', nullable: false })
+  public projectId: number;
+
   @ManyToOne((type) => Project, (project) => project.tasks, {
     onDelete: "CASCADE"
   })

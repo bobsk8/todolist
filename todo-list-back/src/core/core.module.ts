@@ -1,4 +1,5 @@
 import { MiddlewareConsumer, Module, ValidationPipe } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { APP_FILTER, APP_PIPE } from '@nestjs/core';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -17,7 +18,19 @@ import { LoggerMiddleware } from './middlewares/logger.middleware';
 
 @Module({
     imports: [
-        TypeOrmModule.forRoot(),
+        ConfigModule.forRoot(),
+        TypeOrmModule.forRoot({
+            type: 'mysql',
+            host: process.env.DATABASE_HOST,
+            port: parseInt(process.env.DATABASE_PORT, 10),
+            username: process.env.DATABASE_USER,
+            password: process.env.DATABASE_PASS,
+            database: process.env.DATABASE_NAME,
+            entities: ["dist/**/*.model{.ts,.js}"],
+            logging: Boolean(process.env.DATABASE_LOGGING),
+            migrations: ["migration/*.js"],
+            synchronize: Boolean(process.env.DATABASE_SYNCHRONIZE)
+        }),
         UserModule,
         TaskModule,
         ProjectModule,
