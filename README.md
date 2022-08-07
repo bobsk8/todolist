@@ -7,7 +7,7 @@
 
 ## Technologies used
 
-* Angular 10
+* Angular 14
 * git
 * Nodejs
 * Nestjs
@@ -23,10 +23,10 @@
 
 | Technology | Site |
 | ------ | ------ |
-| Angular CLI v 10.x.x | [https://cli.angular.io] |
+| Angular CLI v 14.x.x | [https://cli.angular.io] |
 | Git | [https://git-scm.com/book/en/v2/Getting-Started-Installing-Git] |
-| Nodejs v 12.x.x | [https://nodejs.org/en/download/] |
-| Nestjs v 7.x.x | [herve-staticttps://docs.nestjs.com/] |
+| Nodejs v 16.x.x | [https://nodejs.org/en/download/] |
+| Nestjs v 9.x.x | [herve-staticttps://docs.nestjs.com/] |
 | Docker v 19.03.x | [https://www.docker.com/get-started] |
 | Docker-compose v 1.26.x | [https://docs.docker.com/compose/install/] |
 |
