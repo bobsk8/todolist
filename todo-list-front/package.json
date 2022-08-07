@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --proxy-config proxy.config-local.json",
-    "build": "ng build --prod --output-path=../todo-list-back/client",
+    "build": "ng build --configuration production --output-path=../todo-list-back/client",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -24,11 +24,11 @@
     "jquery": "^3.5.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
-    "zone.js": "~0.11.7"
+    "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1102.19",
-    "@angular/cli": "~11.2.19",
+    "@angular-devkit/build-angular": "~12.2.18",
+    "@angular/cli": "~12.2.18",
     "@angular/compiler-cli": "~14.1.1",
     "@types/node": "^12.11.1",
     "@types/jasmine": "~3.6.0",
