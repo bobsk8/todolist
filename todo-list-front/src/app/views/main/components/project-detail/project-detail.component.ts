@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ProjectService } from 'src/app/core/services/project.service';
@@ -14,12 +14,12 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
 
   public edit = false;
   public submitted = false;
-  public projectForm: FormGroup;
+  public projectForm: UntypedFormGroup;
   private subs: Subscription[] = [];
   constructor(
     private projectService: ProjectService,
     private route: ActivatedRoute,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private router: Router
   ) { }
 
@@ -35,14 +35,14 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
     this.subs.forEach(el => el.unsubscribe());
   }
 
-  public createForm(): FormGroup {
+  public createForm(): UntypedFormGroup {
     return this.fb.group({
       id: [],
       name: ['', Validators.required]
     });
   }
 
-  public onSubmit(form: FormGroup): void {
+  public onSubmit(form: UntypedFormGroup): void {
     this.submitted = true;
     if (!form.valid) {
       return;

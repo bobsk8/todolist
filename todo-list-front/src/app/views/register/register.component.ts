@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -14,12 +14,12 @@ import { User } from 'src/app/model/user.model';
 export class RegisterComponent implements OnInit, OnDestroy {
 
   submitted = false;
-  userForm: FormGroup;
+  userForm: UntypedFormGroup;
   private subs: Subscription[] = [];
   constructor(
     private router: Router,
     private userService: UserService,
-    private fb: FormBuilder
+    private fb: UntypedFormBuilder
   ) { }
 
   public ngOnInit(): void {
@@ -30,7 +30,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.subs.forEach(el => el.unsubscribe());
   }
 
-  public onSubmit(form: FormGroup): void {
+  public onSubmit(form: UntypedFormGroup): void {
     this.submitted = true;
     if (!form.valid) {
       return;
@@ -48,7 +48,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.subs.push(sub);
   }
 
-  private createForm(): FormGroup {
+  private createForm(): UntypedFormGroup {
     return this.fb.group({
       name: ['', Validators.required],
       username: ['', Validators.required],

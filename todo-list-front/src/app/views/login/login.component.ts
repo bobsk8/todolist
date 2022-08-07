@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { UntypedFormBuilder, Validators, UntypedFormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
@@ -14,11 +14,11 @@ import { LoginDto } from 'src/app/dto/login.dto';
 export class LoginComponent implements OnInit, OnDestroy {
 
   public submitted = false;
-  public loginForm: FormGroup;
+  public loginForm: UntypedFormGroup;
   private subs: Subscription[] = [];
   constructor(
     private router: Router,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private loginService: LoginService
   ) { }
 
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subs.forEach(el => el.unsubscribe());
   }
 
-  public onSubmit(form: FormGroup): void {
+  public onSubmit(form: UntypedFormGroup): void {
     this.submitted = true;
     if (!form.valid) {
       return;
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.subs.push(sub);
   }
 
-  private createForm(): FormGroup {
+  private createForm(): UntypedFormGroup {
     return this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
