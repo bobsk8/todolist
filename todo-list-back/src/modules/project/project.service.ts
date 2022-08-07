@@ -48,9 +48,10 @@ export class ProjectService {
         }
     }
 
-    public async findOne(id: number): Promise<Project> {
+    public async findOne(id: number, userId: number): Promise<Project> {
         try {
-            return this.projectRepository.findOne({ where: { id } });
+            const data = this.projectRepository.findOne({ where: { id, userId } });
+            return data;
         } catch (err) {
             throw new HttpException({
                 status: HttpStatus.FORBIDDEN,

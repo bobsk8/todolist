@@ -6,6 +6,7 @@
     "password": "root",
     "database": "todolist",
     "entities": ["dist/**/*.model{.ts,.js}"],
+    "logging": true,
     "migrations": ["migration/*.js"],
     "cli": {
         "migrationsDir": "migration"

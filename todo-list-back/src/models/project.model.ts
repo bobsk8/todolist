@@ -16,6 +16,9 @@ export class Project {
   @Column({ type: 'varchar', nullable: false })
   public name: string;
 
+  @Column({ type: 'number', nullable: false })
+  public userId: number;
+
   @OneToMany((type) => Task, (task) => task.project)
   public tasks: Task[];
 

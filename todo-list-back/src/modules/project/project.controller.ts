@@ -44,8 +44,9 @@ export class ProjectController {
 
     @Get(':id')
     @UseGuards(JwtAuthGuard)
-    public findOne(@Param('id', ParseIntPipe) id) {
-        return this.projectService.findOne(id);
+    public findOne(@Param('id', ParseIntPipe) id, @Request() req) {
+        const userId = req.user.userId;
+        return this.projectService.findOne(id, userId);
     }
 
     @Put(':id')
