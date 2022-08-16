@@ -3,7 +3,7 @@ import { JwtService } from '@nestjs/jwt';
 
 import { UserService } from '../user/user.service';
 import { CredentialsDto } from './dto/credentials.dto';
-import { User } from '../../models/user.model';
+import { User } from '../../models/user.entity';
 import { LoginUserDto } from './dto/login-user.dto';
 import { passwordCompare } from 'src/shared/helpers';
 

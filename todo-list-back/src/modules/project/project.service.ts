@@ -2,8 +2,8 @@ import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { Project } from '../../models/project.model';
-import { Task } from '../../models/task.model';
+import { Project } from '../../models/project.entity';
+import { Task } from '../../models/task.entity';
 import { TaskService } from '../task/task.service';
 import { CreateTaskDto } from '../task/dto/create-task.dto';
 import { CreateProjectDto } from './dto/create-project.dto';

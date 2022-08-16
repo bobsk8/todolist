@@ -14,7 +14,7 @@ import {
 import { TaskService } from './task.service';
 import { UpdateTaskDto } from './dto/update-task.dto';
 import { ApiTags } from '@nestjs/swagger';
-import { Task } from 'src/models/task.model';
+import { Task } from 'src/models/task.entity';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Controller('task')

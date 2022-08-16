@@ -6,7 +6,7 @@ import {
   UpdateDateColumn,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { Project } from './project.model';
+import { Project } from './project.entity';
 
 @Entity()
 export class Task {

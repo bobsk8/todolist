@@ -1,7 +1,7 @@
 import { IsString } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 
-import { User } from 'src/models/user.model';
+import { User } from 'src/models/user.entity';
 
 export class CreateProjectDto {
 
