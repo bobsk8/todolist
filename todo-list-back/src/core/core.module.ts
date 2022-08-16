@@ -30,8 +30,8 @@ import { RoleController } from 'src/modules/role/role.controller';
             database: process.env.DATABASE_NAME,
             entities: ["dist/**/*.entity{.ts,.js}"],
             logging: Boolean(process.env.DATABASE_LOGGING),
-            migrations: ["migration/*.js"],
-            synchronize: Boolean(process.env.DATABASE_SYNCHRONIZE)
+            migrations: ["dist/migration/*.js"],
+            synchronize: false
         }),
         RoleModule,
         UserModule,

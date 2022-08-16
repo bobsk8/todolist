@@ -107,6 +107,11 @@ Run the application
 $ docker-compose up
 ```
 
+Run migration inside todo-list-back folder
+```sh
+$ npx typeorm-ts-node-commonjs migration:run -d db_config.t
+```
+
 Open browsed on
 ```sh
 http://localhost:3000/
