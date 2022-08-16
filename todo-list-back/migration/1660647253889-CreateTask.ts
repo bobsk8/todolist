@@ -12,7 +12,8 @@ export class CreateTask1660647253889 implements MigrationInterface {
                         type: "int",
                         isPrimary: true,
                         isUnique: true,
-                        generationStrategy: "increment"
+                        generationStrategy: "increment",
+                        isGenerated: true
                     },
                     {
                         name: "description",

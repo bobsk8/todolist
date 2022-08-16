@@ -12,7 +12,8 @@ export class CreateRole1660647272489 implements MigrationInterface {
                         type: "int",
                         isPrimary: true,
                         isUnique: true,
-                        generationStrategy: "increment"
+                        generationStrategy: "increment",
+                        isGenerated: true
                     },
                     {
                         name: "name",

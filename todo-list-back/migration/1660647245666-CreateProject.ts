@@ -12,7 +12,8 @@ export class CreateProject1660647245666 implements MigrationInterface {
                         type: "int",
                         isPrimary: true,
                         isUnique: true,
-                        generationStrategy: "increment"
+                        generationStrategy: "increment",
+                        isGenerated: true
                     },
                     {
                         name: "name",
