@@ -6,18 +6,21 @@ import { User } from 'src/models/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { passwordHash } from 'src/shared/helpers';
+import { RoleService } from '../role/role.service';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,
+    private roleService: RoleService
   ) {}
 
   public async save(user: CreateUserDto): Promise<User> {
     try {
       user.password = await passwordHash(user.password);
-      const resp = await this.usersRepository.save(user);
+      const role = await this.roleService.findOne(2);
+      const resp = await this.usersRepository.save({...user, roles: [role]});
       delete resp.password;
       return resp;
     } catch (err) {

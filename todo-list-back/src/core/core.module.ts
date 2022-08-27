@@ -1,6 +1,6 @@
 import { MiddlewareConsumer, Module, ValidationPipe } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { APP_FILTER, APP_PIPE } from '@nestjs/core';
+import { APP_FILTER, APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
@@ -17,6 +17,7 @@ import { RoleModule } from 'src/modules/role/role.module';
 import { HttpExceptionFilter } from './filters/http-exception.filter';
 import { LoggerMiddleware } from './middlewares/logger.middleware';
 import { RoleController } from 'src/modules/role/role.controller';
+import { RolesGuard } from './guards/roles.guard';
 
 @Module({
     imports: [
@@ -50,6 +51,10 @@ import { RoleController } from 'src/modules/role/role.controller';
         {
             provide: APP_PIPE,
             useClass: ValidationPipe,
+        },
+        {
+            provide: APP_GUARD,
+            useClass: RolesGuard,
         },
     ]
 })

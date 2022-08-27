@@ -12,6 +12,8 @@ import {
   ParseIntPipe,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
+import { Roles } from 'src/core/decorators/roles.decorator';
+import { RolesEnum } from 'src/shared/enums/role.enum';
 
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -30,6 +32,7 @@ export class UserController {
   }
 
   @Get()
+  @Roles(RolesEnum.Admin)
   @UseGuards(JwtAuthGuard)
   public findAll() {
     return this.userService.findAll();
@@ -49,6 +52,7 @@ export class UserController {
   }
 
   @Delete(':id')
+  @Roles(RolesEnum.Admin)
   @UseGuards(JwtAuthGuard)
   public remove(@Param('id', ParseIntPipe) id: number) {
     return this.userService.remove(id);

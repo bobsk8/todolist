@@ -8,18 +8,22 @@ export class InitDatas1660676396820 implements MigrationInterface {
                 id: 1,
                 name: 'Admin',
                 username: 'admin',
-                password: '$2b$10$/WNlWw2ItMb9d74fdolfjuXQwlu.IC0g4H6FHQIvTJfuAL.wVlDs.' //123456
+                password: '$2b$10$/WNlWw2ItMb9d74fdolfjuXQwlu.IC0g4H6FHQIvTJfuAL.wVlDs.' //Pass: 123456 (need change that)
             })
             .execute();
 
         await queryRunner.manager.createQueryBuilder().insert().into("role")
-            .values({
+            .values([{
                 id: 1,
                 name: 'admin',
-            })
+            },
+            {
+                id: 2,
+                name: 'user',
+            }])
             .execute();
 
-            await queryRunner.manager.createQueryBuilder().insert().into("role_users_user")
+        await queryRunner.manager.createQueryBuilder().insert().into("role_users_user")
             .values({
                 roleId: 1,
                 userId: 1,
