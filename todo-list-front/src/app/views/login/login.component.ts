@@ -3,7 +3,7 @@ import { UntypedFormBuilder, Validators, UntypedFormGroup } from '@angular/forms
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
-import { LoginService } from 'src/app/core/services/login.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 import { LoginDto } from 'src/app/dto/login.dto';
 
 @Component({
@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private fb: UntypedFormBuilder,
-    private loginService: LoginService
+    private authService: AuthService
   ) { }
 
   public ngOnInit(): void {
@@ -42,18 +42,18 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   private login(loginDto: LoginDto): void {
     this.isLoading = true;
-    const sub = this.loginService.login(loginDto)
+    const sub = this.authService.login(loginDto)
       .subscribe(resp => {
-        this.loginService.setCurrentUserSession(resp.user, resp.token);
+        this.authService.setCurrentUserSession(resp.user, resp.token);
         this.isLoading = false;
         this.router.navigate(['main/project']);
-      }, err => this.isLoading = false);
+      }, () => this.isLoading = false);
     this.subs.push(sub);
   }
 
   private createForm(): UntypedFormGroup {
     return this.fb.group({
-      username: ['', Validators.required],
+      email: ['', Validators.required],
       password: ['', Validators.required]
     });
   }

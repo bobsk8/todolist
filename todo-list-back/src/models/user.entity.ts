@@ -8,10 +8,22 @@ export class User {
   public id: number;
 
   @Column({ type: 'varchar', nullable: false })
-  public name: string;
+  public firstName: string;
+
+  @Column({ type: 'varchar', nullable: false })
+  public lastName: string;
+
+  @Column({ type: 'varchar', nullable: false })
+  public cpf: string;
+
+  @Column({ type: 'varchar', nullable: false })
+  public cnpj: string;
+
+  @Column({ type: 'varchar', nullable: false })
+  public cellPhone: string;
 
   @Column({ type: 'varchar', unique: true, nullable: false })
-  public username: string;
+  public email: string;
 
   @Column({ type: 'varchar', nullable: false })
   public password: string;

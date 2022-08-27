@@ -1,29 +1,62 @@
-<div class="content">
-    <h2>Register</h2>
-    <form #fregister="ngForm" [formGroup]="userForm" (ngSubmit)="onSubmit(fregister)">
-        <div class="form-group">
-            <label for="username">Name</label>
-            <input type="text" formControlName="name" class="form-control" name="name" [ngClass]="{ 'is-invalid': submitted && userForm.get('name').errors }" />
-            <div *ngIf="submitted && userForm.get('name').errors" class="invalid-feedback">
-                <div *ngIf="userForm.get('name').errors.required">Name is required</div>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- left column -->
+            <div class="col-md-6">
+
+                <div class="card card-primary">
+                    <div class="card-header">
+                        <h3 class="card-title">Cadastro de cliente</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <!-- form start -->
+                    <form #fregister="ngForm" [formGroup]="registerForm" (ngSubmit)="onSubmit(fregister)">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="firstName">Primeiro Nome</label>
+                                <input formControlName="firstName" type="text" class="form-control" id="firstName"
+                                    placeholder="Entre com o primeiro nome">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Último Nome</label>
+                                <input formControlName="lastName" type="text" class="form-control" id="lastName"
+                                    placeholder="Entre com o ultimo nome">
+                            </div>
+                            <div class="form-group">
+                                <label for="cpf">CPF</label>
+                                <input formControlName="cpf" mask="000.000.000-00" type="text" class="form-control"
+                                    id="cpf" placeholder="Entre com o cpf">
+                            </div>
+                            <div class="form-group">
+                                <label for="cnpj">CNPJ</label>
+                                <input formControlName="cnpj" mask="00.000.000/0000-00" type="text" class="form-control"
+                                    id="cnpj" placeholder="Entre com o cnpj">
+                            </div>
+                            <div class="form-group">
+                                <label for="cellPhone">Celular</label>
+                                <input formControlName="cellPhone" mask="(99)99999-9999)" type="text"
+                                    class="form-control" id="cellPhone" placeholder="Entre com o telefone celular">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">E-mail</label>
+                                <input formControlName="email" type="email" class="form-control" id="email"
+                                    placeholder="Entre com  email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Senha</label>
+                                <input formControlName="password" type="password" class="form-control" id="password"
+                                    placeholder="Entre com a senha">
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+
             </div>
         </div>
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" formControlName="username" class="form-control" name="username" [ngClass]="{ 'is-invalid': submitted && userForm.get('username').errors }" />
-            <div *ngIf="submitted && userForm.get('username').errors" class="invalid-feedback">
-                <div *ngIf="userForm.get('username').errors.required">Username is required</div>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input formControlName="password" type="password" class="form-control" name="password" [ngClass]="{ 'is-invalid': submitted && userForm.get('password').errors }" />
-            <div *ngIf="submitted && userForm.get('password').errors" class="invalid-feedback">
-                <div *ngIf="userForm.get('password').errors.required">Password is required</div>
-            </div>
-        </div>
-        <div class="form-group">
-            <button class="btn btn-primary">Register</button>            
-        </div>
-    </form>
-</div>
+    </div>
+</section>

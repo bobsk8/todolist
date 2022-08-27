@@ -6,17 +6,17 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 
-import { LoginService } from '../services/login.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
-    private loginService: LoginService
+    private authService: AuthService
   ) { }
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): import('rxjs').Observable<HttpEvent<any>> {
-    const token = this.loginService.getUserSessionToken();
+    const token = this.authService.getUserSessionToken();
     if (token) {
       req = req.clone({
         setHeaders: {

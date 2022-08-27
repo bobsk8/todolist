@@ -4,11 +4,11 @@ import { ApiProperty } from '@nestjs/swagger';
 export class CredentialsDto {
 
     @ApiProperty({
-        description: 'The username of user',
+        description: 'The email of user',
     })
     @IsNotEmpty()
     @IsString()
-    username: string;
+    email: string;
 
     @ApiProperty({
         description: 'The password of user',

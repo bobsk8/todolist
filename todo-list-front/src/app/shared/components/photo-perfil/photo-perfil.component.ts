@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { LoginService } from 'src/app/core/services/login.service';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-photo-perfil',
@@ -13,7 +13,7 @@ export class PhotoPerfilComponent implements OnInit {
   @Input() public photoAlt = '';
   public photo = '';
   constructor(
-    private loginService: LoginService
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -21,7 +21,7 @@ export class PhotoPerfilComponent implements OnInit {
   }
 
   async getPhoto(): Promise<void> {
-    const currentUser = this.loginService.getUserSession();
+    const currentUser = this.authService.getUserSession();
   }
 
 }

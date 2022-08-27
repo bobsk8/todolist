@@ -14,14 +14,14 @@
       <li class="nav-item dropdown user-menu">
         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
           <app-photo-perfil [photoClass]="'user-image img-circle elevation-2'" [photoAlt]="'User Image'"></app-photo-perfil>
-          <span class="d-none d-md-inline">{{currentUser?.name}}</span>
+          <span class="d-none d-md-inline">{{currentUser?.firstName}}</span>
         </a>
         <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <!-- User image -->
           <li class="user-header bg-primary">
             <app-photo-perfil [photoClass]="'img-circle elevation-2 user-dropdown'" [photoAlt]="'User Image'"></app-photo-perfil>
             <p>
-              {{currentUser?.name}}
+              {{currentUser?.firstName}}
               <!-- <small>Member since {{currentUser?.createdAt?.toDate() | date: 'MMM yyyy'}}</small> -->
             </p>
           </li>          

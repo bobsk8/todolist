@@ -9,8 +9,8 @@
 
                 <form #flogin="ngForm" [formGroup]="loginForm" (ngSubmit)="onSubmit(flogin)">
                     <div class="input-group mb-3">
-                        <input type="username" [ngClass]="{'is-invalid': loginForm.get('username')?.errors && submitted}"
-                            class="form-control" placeholder="username" formControlName="username">
+                        <input type="email" [ngClass]="{'is-invalid': loginForm.get('email')?.errors && submitted}"
+                            class="form-control" placeholder="email" formControlName="email">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-envelope"></span>

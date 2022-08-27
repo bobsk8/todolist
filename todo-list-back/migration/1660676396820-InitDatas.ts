@@ -6,8 +6,12 @@ export class InitDatas1660676396820 implements MigrationInterface {
         await queryRunner.manager.createQueryBuilder().insert().into("user")
             .values({
                 id: 1,
-                name: 'Admin',
-                username: 'admin',
+                firstName: 'Admin',
+                lastName: 'Admin',
+                cpf: '00000000000',
+                cnpj: '000000000',
+                cellPhone: '000000000',
+                email: 'admin',
                 password: '$2b$10$/WNlWw2ItMb9d74fdolfjuXQwlu.IC0g4H6FHQIvTJfuAL.wVlDs.' //Pass: 123456 (need change that)
             })
             .execute();

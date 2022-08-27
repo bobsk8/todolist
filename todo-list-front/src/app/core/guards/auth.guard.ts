@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { CanLoad, Route, Router, UrlSegment } from '@angular/router';
 import { Observable } from 'rxjs';
 
-import { LoginService } from '../services/login.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthGuard implements CanLoad {
   constructor(
-    private loginService: LoginService,
+    private authService: AuthService,
     private router: Router,
   ) { }
 
@@ -18,7 +18,7 @@ export class AuthGuard implements CanLoad {
   }
 
   private isPermition(path: string): boolean {
-    const userAuth = this.loginService.getUserSessionToken();
+    const userAuth = this.authService.getUserSessionToken();
     if (!userAuth) {
       this.router.navigate(['']);
       return false;

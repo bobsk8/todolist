@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AlertMessagesService } from 'src/app/core/services/alert-messages.service';
 
 import { UserService } from 'src/app/core/services/user.service';
 import { User } from 'src/app/model/user.model';
@@ -13,17 +14,19 @@ import { User } from 'src/app/model/user.model';
 })
 export class RegisterComponent implements OnInit, OnDestroy {
 
-  submitted = false;
-  userForm: UntypedFormGroup;
+  public registerForm: UntypedFormGroup;
   private subs: Subscription[] = [];
+  public submitted = false;
+  private isLoading = false;
   constructor(
     private router: Router,
     private userService: UserService,
-    private fb: UntypedFormBuilder
+    private fb: UntypedFormBuilder,
+    private alertMessagesService: AlertMessagesService
   ) { }
 
   public ngOnInit(): void {
-    this.userForm = this.createForm();
+    this.registerForm = this.createForm();
   }
 
   public ngOnDestroy(): void {
@@ -40,19 +43,25 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   private save(user: User): void {
+    this.isLoading = true;
     const sub = this.userService.create(user)
       .subscribe(() => {
-        alert('Success!');
+        this.alertMessagesService.showSuccessAlert('Success!');
+        this.isLoading = false;
         this.router.navigate(['login']);
-      }, err => alert(err.error.message));
+      }, () => this.isLoading = false);
     this.subs.push(sub);
   }
 
   private createForm(): UntypedFormGroup {
     return this.fb.group({
-      name: ['', Validators.required],
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      cpf: ['', [Validators.required]],
+      cnpj: ['', [Validators.required]],
+      cellPhone: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
     });
   }
 

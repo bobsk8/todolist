@@ -17,7 +17,7 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class AuthService {
   private url = environment.apiEndPoint;
 
   constructor(

@@ -2,7 +2,7 @@
     <h2>Project</h2>
     <form #fproject="ngForm" [formGroup]="projectForm" (ngSubmit)="onSubmit(fproject)">
         <div class="form-group">
-            <label for="username">Name</label>
+            <label for="name">Name</label>
             <input type="text" formControlName="name" class="form-control" name="name" [ngClass]="{ 'is-invalid': submitted && projectForm.get('name').errors }" />
             <div *ngIf="submitted && projectForm.get('name').errors" class="invalid-feedback">
                 <div *ngIf="projectForm.get('name').errors.required">Name is required</div>

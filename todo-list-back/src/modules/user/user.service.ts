@@ -65,10 +65,10 @@ export class UserService {
     }
   }
 
-  public findByUserName(username: string): Promise<User> {
+  public findByEmail(email: string): Promise<User> {
     try {
       const resp = this.usersRepository.findOne({
-        where: { username }, relations: {
+        where: { email }, relations: {
           roles: true,
         }
       });
@@ -101,7 +101,7 @@ export class UserService {
   public async update(id: number, user: UpdateUserDto): Promise<User> {
     try {
       const userSaved = await this.usersRepository.findOne({ where: { id } });
-      userSaved.name = user.name;
+      // userSaved.name = user.name;
       const resp = this.usersRepository.save(user);
       return resp;
     } catch (err) {

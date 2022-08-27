@@ -16,15 +16,35 @@ export class CreateUser1660647231419 implements MigrationInterface {
                         isGenerated: true
                     },
                     {
-                        name: "name",
+                        name: "firstName",
                         type: "varchar",
                         isNullable: false
                     },
                     {
-                        name: "username",
+                        name: "lastName",
                         type: "varchar",
-                        isNullable: false,
-                        isUnique: true
+                        isNullable: false
+                    },
+                    {
+                        name: "cpf",
+                        type: "varchar",
+                        isNullable: false
+                    },
+                    {
+                        name: "cnpj",
+                        type: "varchar",
+                        isNullable: false
+                    },
+                    {
+                        name: "cellPhone",
+                        type: "varchar",
+                        isNullable: false
+                    },
+                    {
+                        name: "email",
+                        type: "varchar",
+                        isUnique: true,
+                        isNullable: false
                     },
                     {
                         name: "password",

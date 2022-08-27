@@ -15,9 +15,9 @@ export class AuthService {
     ) { }
 
     public async validateUser(credentialsDto: CredentialsDto): Promise<User> {
-        const { username, password } = credentialsDto;
+        const { email, password } = credentialsDto;
         try {
-            const user = await this.userService.findByUserName(username);
+            const user = await this.userService.findByEmail(email);
 
             if (!user) {
                 return null;
@@ -40,12 +40,12 @@ export class AuthService {
             if (!user) {
                 throw new Error;
             }
-            const payload = { username: user.username, sub: user.id, roles: user.roles };
+            const payload = { email: user.email, sub: user.id, roles: user.roles };
             delete user.password;
             const token = this.jwtService.sign(payload);
             return new LoginUserDto(user, token);
         } catch (err) {
-            throw new UnauthorizedException(`username or password is incorrect`);;
+            throw new UnauthorizedException(`email or password is incorrect`);;
         }
 
     }

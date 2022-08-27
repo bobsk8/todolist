@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanLoad, Route, Router, UrlSegment, UrlTree } from '@angular/router';
 
 import { Observable } from 'rxjs';
-import { LoginService } from '../services/login.service';
+import { AuthService } from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RoleGuard implements CanLoad {
   constructor(
-    private loginService: LoginService,
+    private authService: AuthService,
     private router: Router,
   ) { }
 
@@ -18,7 +18,7 @@ export class RoleGuard implements CanLoad {
   }
 
   private isPermition(route: ActivatedRouteSnapshot): boolean {
-    const userAuth = this.loginService.getUserSession();
+    const userAuth = this.authService.getUserSession();
     if (userAuth) {
       if (route?.data?.roles?.some(el1 => userAuth.roles.some(el2 => el2.id === el1))) {
         return true;
