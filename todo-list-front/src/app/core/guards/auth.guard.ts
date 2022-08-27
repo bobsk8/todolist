@@ -11,18 +11,18 @@ export class AuthGuard implements CanLoad {
   constructor(
     private loginService: LoginService,
     private router: Router,
-) { }
+  ) { }
 
-public canLoad(route: Route, segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
+  public canLoad(route: Route, segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
     return this.isPermition(route.path);
-}
+  }
 
-private isPermition(path: string): boolean {
+  private isPermition(path: string): boolean {
     const userAuth = this.loginService.getUserSessionToken();
     if (!userAuth) {
-        this.router.navigate(['']);
-        return false;
+      this.router.navigate(['']);
+      return false;
     }
     return true;
-}
+  }
 }
