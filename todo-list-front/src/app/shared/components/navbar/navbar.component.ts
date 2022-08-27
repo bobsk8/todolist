@@ -1,24 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { LoginService } from 'src/app/core/services/login.service';
+
 import { User } from 'src/app/model/user.model';
 
 @Component({
-  selector: 'app-menu',
-  templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.css']
+  selector: 'app-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.css']
 })
-export class MenuComponent implements OnInit {
+export class NavbarComponent implements OnInit {
 
-  public user: User;
+  public currentUser: User;
   constructor(
     private router: Router,
     private loginService: LoginService
   ) { }
 
   public ngOnInit(): void {
-    this.user = this.loginService.getUserSession();
+    this.currentUser = this.loginService.getUserSession();
   }
 
   public logout(): void {

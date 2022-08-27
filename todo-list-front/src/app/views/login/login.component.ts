@@ -14,6 +14,7 @@ import { LoginDto } from 'src/app/dto/login.dto';
 export class LoginComponent implements OnInit, OnDestroy {
 
   public submitted = false;
+  public isLoading = false;
   public loginForm: UntypedFormGroup;
   private subs: Subscription[] = [];
   constructor(
@@ -40,11 +41,13 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   private login(loginDto: LoginDto): void {
+    this.isLoading = true;
     const sub = this.loginService.login(loginDto)
-    .subscribe(resp => {
-      this.loginService.setCurrentUserSession(resp.user, resp.token);
-      this.router.navigate(['main/project']);
-    });
+      .subscribe(resp => {
+        this.loginService.setCurrentUserSession(resp.user, resp.token);
+        this.isLoading = false;
+        this.router.navigate(['main/project']);
+      }, err => this.isLoading = false);
     this.subs.push(sub);
   }
 

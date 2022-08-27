@@ -1,33 +1,42 @@
-<div class="content">
-    <div class="row">
-        <div class="col">
-            <h2 class="h2">Login</h2>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <form #flogin="ngForm" [formGroup]="loginForm" (ngSubmit)="onSubmit(flogin)">
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" formControlName="username" class="form-control" name="username"
-                        [ngClass]="{ 'is-invalid': submitted && loginForm?.get('username')?.errors }" />
-                    <div *ngIf="submitted && loginForm?.get('username')?.errors" class="invalid-feedback">
-                        <div *ngIf="loginForm?.get('username')?.errors?.required">Username is required</div>
+<div class="hold-transition login-page">
+    <div class="login-box">
+        <div class="card">
+            <div class="overlay" *ngIf="isLoading">
+                <i class="fas fa-3x fa-sync-alt fa-spin"></i>
+            </div>
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Sign in to start your session</p>
+
+                <form #flogin="ngForm" [formGroup]="loginForm" (ngSubmit)="onSubmit(flogin)">
+                    <div class="input-group mb-3">
+                        <input type="username" [ngClass]="{'is-invalid': loginForm.get('username')?.errors && submitted}"
+                            class="form-control" placeholder="username" formControlName="username">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input formControlName="password" type="password" class="form-control" name="password"
-                        [ngClass]="{ 'is-invalid': submitted && loginForm?.get('password')?.errors }" />
-                    <div *ngIf="submitted && loginForm?.get('password')?.errors" class="invalid-feedback">
-                        <div *ngIf="loginForm?.get('password')?.errors?.required">Password is required</div>
+                    <div class="input-group mb-3">
+                        <input type="password"
+                            [ngClass]="{'is-invalid': loginForm.get('password')?.errors && submitted}"
+                            class="form-control" placeholder="Password" formControlName="password">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary">Login</button>
-                    <a routerLink="/register" class="btn btn-link">Register</a>
-                </div>
-            </form>
+                    <div class="row">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+                        </div>
+                    </div>
+                </form>                
+                <p class="mb-0">
+                    <a routerLink="/register" class="text-center">Register a new membership</a>
+                </p>
+            </div>
         </div>
     </div>
 </div>
