@@ -14,10 +14,8 @@ import { TaskModule } from 'src/modules/task/task.module';
 import { UserController } from 'src/modules/user/user.controller';
 import { UserModule } from 'src/modules/user/user.module';
 import { RoleModule } from 'src/modules/role/role.module';
-import { HttpExceptionFilter } from './filters/http-exception.filter';
 import { LoggerMiddleware } from './middlewares/logger.middleware';
 import { RoleController } from 'src/modules/role/role.controller';
-import { RolesGuard } from './guards/roles.guard';
 
 @Module({
     imports: [
@@ -43,20 +41,7 @@ import { RolesGuard } from './guards/roles.guard';
             rootPath: join(__dirname, '..', 'client'),
         }),
     ],
-    providers: [
-        {
-            provide: APP_FILTER,
-            useClass: HttpExceptionFilter,
-        },
-        {
-            provide: APP_PIPE,
-            useClass: ValidationPipe,
-        },
-        {
-            provide: APP_GUARD,
-            useClass: RolesGuard,
-        },
-    ]
+    providers: []
 })
 export class CoreModule {
     configure(consumer: MiddlewareConsumer) {

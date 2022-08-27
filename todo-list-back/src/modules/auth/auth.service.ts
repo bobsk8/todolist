@@ -40,7 +40,7 @@ export class AuthService {
             if (!user) {
                 throw new Error;
             }
-            const payload = { username: user.username, sub: user.id };
+            const payload = { username: user.username, sub: user.id, roles: user.roles };
             delete user.password;
             const token = this.jwtService.sign(payload);
             return new LoginUserDto(user, token);

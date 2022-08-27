@@ -10,9 +10,11 @@ import {
   Delete,
   UseGuards,
   ParseIntPipe,
+  Request,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/core/decorators/roles.decorator';
+import { RolesGuard } from 'src/core/guards/roles.guard';
 import { RolesEnum } from 'src/shared/enums/role.enum';
 
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
@@ -32,28 +34,29 @@ export class UserController {
   }
 
   @Get()
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(RolesEnum.Admin)
-  @UseGuards(JwtAuthGuard)
   public findAll() {
     return this.userService.findAll();
   }
 
   @Get(':id')
-  @UseGuards(JwtAuthGuard)
-  public findOne(@Param('id', ParseIntPipe) id: number) {
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(RolesEnum.Admin)
+  public findOne(@Param('id', ParseIntPipe) id: number, @Request() req) {
     return this.userService.findOne(id);
   }
 
   @Put(':id')
-  @UseGuards(JwtAuthGuard)
-  @UsePipes(ValidationPipe)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(RolesEnum.Admin)
   public update(@Param('id', ParseIntPipe) id: number, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(id, updateUserDto);
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(RolesEnum.Admin)
-  @UseGuards(JwtAuthGuard)
   public remove(@Param('id', ParseIntPipe) id: number) {
     return this.userService.remove(id);
   }

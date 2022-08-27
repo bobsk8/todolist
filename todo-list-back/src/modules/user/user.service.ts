@@ -67,7 +67,11 @@ export class UserService {
 
   public findByUserName(username: string): Promise<User> {
     try {
-      const resp = this.usersRepository.findOne({ where: { username } });
+      const resp = this.usersRepository.findOne({
+        where: { username }, relations: {
+          roles: true,
+        }
+      });
       return resp;
     } catch (err) {
       throw new HttpException(
