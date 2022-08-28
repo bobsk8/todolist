@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-12">
+        <div class="table-responsive">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Users</h3>
+                </div>
+                <div class="overlay dark fa-3x" *ngIf="isLoading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body">
+                        <cdk-virtual-scroll-viewport itemSize="63" (scrolledIndexChange)="handler($event)">
+                            <table id="dtBasicExample" class="table table-bordered table-hover text-center">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr *cdkVirtualFor="let user of users">
+                                        <th scope="row">{{user.id}}</th>
+                                        <td>{{user.firstName}}</td>
+                                        <td>{{user.email}}</td>
+                                        <td>
+                                            <a (click)="deactivateOrActiveUser(user)" class="btn"
+                                                [ngClass]="{'btn-danger': !user.active, 'btn-primary': user.active}">Disable</a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </cdk-virtual-scroll-viewport>                        
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

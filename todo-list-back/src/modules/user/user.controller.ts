@@ -11,6 +11,7 @@ import {
   UseGuards,
   ParseIntPipe,
   Request,
+  Query,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/core/decorators/roles.decorator';
@@ -36,8 +37,9 @@ export class UserController {
   @Get()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(RolesEnum.Admin)
-  public findAll() {
-    return this.userService.findAll();
+  public findAll(@Query() query: any) {
+    const { offset, limit, sortBy } = query;
+    return this.userService.findAll(offset, limit, sortBy ? JSON.parse(sortBy) : null);
   }
 
   @Get(':id')

@@ -62,6 +62,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
   public getProjects(): void {
     const sub = this.projectService.getAll()
       .subscribe(resp => this.projects = resp);
+    this.subs.push(sub);
   }
 
   public removeProject(projectId: number): void {

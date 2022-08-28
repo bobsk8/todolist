@@ -11,6 +11,7 @@ export class User {
         public cellPhone?: string,
         public email?: string,
         public password?: string,
+        public active?: boolean,
         public projects?: Task[],
         public roles?: Role[]
     ) {

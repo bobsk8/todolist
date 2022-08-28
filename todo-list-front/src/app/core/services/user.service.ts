@@ -52,8 +52,9 @@ export class UserService {
       );
   }
 
-  public getAll(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.url}/user`, httpOptions)
+  public getAll(offset = 0, limit = 10, sortBy = { id: 'DESC' }): Observable<User[]> {
+    const params = `?limit=${limit}&offset=${offset}&sortBy=${JSON.stringify(sortBy)}`;
+    return this.http.get<User[]>(`${this.url}/user${params}`, httpOptions)
       .pipe(
         catchError(err => {
           console.log('getAll user ', err);

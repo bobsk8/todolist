@@ -34,9 +34,13 @@ export class UserService {
     }
   }
 
-  public findAll(): Promise<User[]> {
+  public findAll(skip = 0, take = 10, order: any = { id: 'DESC' }): Promise<User[]> {
     try {
-      const resp = this.usersRepository.find();
+      const resp = this.usersRepository.find({
+        order,
+        skip,
+        take
+      });
       return resp;
     } catch (err) {
       throw new HttpException(

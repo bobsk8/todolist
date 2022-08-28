@@ -25,6 +25,9 @@ export class User {
   @Column({ type: 'varchar', unique: true, nullable: false })
   public email: string;
 
+  @Column({ type: 'boolean', nullable: false, default: true })
+  public active: boolean;
+
   @Column({ type: 'varchar', nullable: false})
   public password: string;
 
