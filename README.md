@@ -7,10 +7,11 @@
 
 ## Technologies used
 
+* AdminLTE
 * Angular 14
 * git
 * Nodejs
-* Nestjs
+* Nestjs 9
 * Swagger
 * Docker
 * Docker-compose
@@ -23,6 +24,7 @@
 
 | Technology | Site |
 | ------ | ------ |
+| AdminLTE.IO v3.0.x | [https://adminlte.io]
 | Angular CLI v 14.x.x | [https://cli.angular.io] |
 | Git | [https://git-scm.com/book/en/v2/Getting-Started-Installing-Git] |
 | Nodejs v 16.x.x | [https://nodejs.org/en/download/] |
