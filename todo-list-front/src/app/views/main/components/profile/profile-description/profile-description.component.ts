@@ -35,7 +35,7 @@ export class ProfileDescriptionComponent implements OnInit, OnDestroy {
       return;
     }
     const user = Object.assign(new User(), form.value);
-    this.save(user);
+    this.update(user);
   }
 
   public ngOnDestroy(): void {
@@ -48,9 +48,9 @@ export class ProfileDescriptionComponent implements OnInit, OnDestroy {
     this.subs.push(sub);
   }
 
-  private save(user: User): void {
+  private update(user: User): void {
     this.isLoading = true;
-    const sub = this.userService.create(user)
+    const sub = this.userService.updateOwnUser(user)
       .subscribe(() => {
         this.alertMessagesService.showSuccessAlert('Success!');
         this.isLoading = false;
@@ -65,8 +65,6 @@ export class ProfileDescriptionComponent implements OnInit, OnDestroy {
       cpf: [user.cpf || '', [Validators.required]],
       cnpj: [user.cnpj || '', [Validators.required]],
       cellPhone: [user.cellPhone || '', [Validators.required]],
-      email: [user.email || '', [Validators.required, Validators.email]],
-      password: [user.password || '', [Validators.required]],
     });
   }
 

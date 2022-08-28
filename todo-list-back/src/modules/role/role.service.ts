@@ -27,8 +27,7 @@ export class RoleService {
 
   public async findOne(id: number): Promise<Role> {
     try {
-      const data = this.roleRepository.findOne({ where: { id } });
-      return data;
+      return this.roleRepository.findOne({ where: { id } });
     } catch (err) {
       throw new HttpException({
         status: HttpStatus.FORBIDDEN,
@@ -39,15 +38,14 @@ export class RoleService {
 
   public findAll(): Promise<Role[]> {
     try {
-        const resp = this.roleRepository.find();
-        return resp;
+      return this.roleRepository.find();
     } catch (err) {
-        throw new HttpException({
-            status: HttpStatus.FORBIDDEN,
-            error: err.errmsg,
-        }, HttpStatus.FORBIDDEN);
+      throw new HttpException({
+        status: HttpStatus.FORBIDDEN,
+        error: err.errmsg,
+      }, HttpStatus.FORBIDDEN);
     }
-}
+  }
 
   public async remove(id: number): Promise<void> {
     try {
@@ -62,9 +60,7 @@ export class RoleService {
 
   public async update(id: number, role: UpdateRoleDto): Promise<Role> {
     try {
-      const roleSave = await this.roleRepository.findOne({ where: { id } });
-      roleSave.name = role.name;
-      return this.roleRepository.save(roleSave);
+      return this.roleRepository.save({ id, ...role });
     } catch (err) {
       throw new HttpException({
         status: HttpStatus.FORBIDDEN,

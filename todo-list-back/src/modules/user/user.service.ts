@@ -14,13 +14,13 @@ export class UserService {
     @InjectRepository(User)
     private usersRepository: Repository<User>,
     private roleService: RoleService
-  ) {}
+  ) { }
 
   public async save(user: CreateUserDto): Promise<User> {
     try {
       user.password = await passwordHash(user.password);
       const role = await this.roleService.findOne(2);
-      const resp = await this.usersRepository.save({...user, roles: [role]});
+      const resp = await this.usersRepository.save({ ...user, roles: [role] });
       delete resp.password;
       return resp;
     } catch (err) {
@@ -36,12 +36,11 @@ export class UserService {
 
   public findAll(skip = 0, take = 10, order: any = { id: 'DESC' }): Promise<User[]> {
     try {
-      const resp = this.usersRepository.find({
+      return this.usersRepository.find({
         order,
         skip,
         take
       });
-      return resp;
     } catch (err) {
       throw new HttpException(
         {
@@ -71,12 +70,11 @@ export class UserService {
 
   public findByEmail(email: string): Promise<User> {
     try {
-      const resp = this.usersRepository.findOne({
+      return this.usersRepository.findOne({
         where: { email }, relations: {
           roles: true,
         }
       });
-      return resp;
     } catch (err) {
       throw new HttpException(
         {
@@ -104,10 +102,7 @@ export class UserService {
 
   public async update(id: number, user: UpdateUserDto): Promise<User> {
     try {
-      const userSaved = await this.usersRepository.findOne({ where: { id } });
-      // userSaved.name = user.name;
-      const resp = this.usersRepository.save(user);
-      return resp;
+      return this.usersRepository.save({ id, ...user });
     } catch (err) {
       throw new HttpException(
         {

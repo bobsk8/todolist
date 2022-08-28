@@ -33,10 +33,20 @@ export class UserService {
   }
 
   public getOwnUser(): Observable<User> {
-    return this.http.get<User>(`${this.url}/user/own/datas`, httpOptions)
+    return this.http.get<User>(`${this.url}/user/own/get`, httpOptions)
       .pipe(
         catchError(err => {
           console.log('getOwnUser user ', err);
+          return throwError(err);
+        })
+      );
+  }
+
+  public updateOwnUser(user: User): Observable<User> {
+    return this.http.put(`${this.url}/user/own/update`, user, httpOptions)
+      .pipe(
+        catchError(err => {
+          console.log('updateOwnUser user', err);
           return throwError(err);
         })
       );

@@ -50,8 +50,7 @@ export class ProjectService {
 
     public async findOne(id: number, userId: number): Promise<Project> {
         try {
-            const data = this.projectRepository.findOne({ where: { id, userId } });
-            return data;
+            return this.projectRepository.findOne({ where: { id, userId } });
         } catch (err) {
             throw new HttpException({
                 status: HttpStatus.FORBIDDEN,
@@ -73,9 +72,7 @@ export class ProjectService {
 
     public async update(id: number, project: UpdateProjectDto): Promise<Project> {
         try {
-            const projectSave = await this.projectRepository.findOne({ where: { id } });
-            projectSave.name = project.name;
-            return this.projectRepository.save(projectSave);
+            return this.projectRepository.save({ id, ...project });
         } catch (err) {
             throw new HttpException({
                 status: HttpStatus.FORBIDDEN,

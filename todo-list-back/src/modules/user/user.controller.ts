@@ -49,7 +49,7 @@ export class UserController {
     return this.userService.findOne(id);
   }
 
-  @Get('/own/datas')
+  @Get('/own/get')
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard)
   public findOwn(@Request() req) {
@@ -57,8 +57,17 @@ export class UserController {
     return this.userService.findOne(userId);
   }
 
+  @Put('/own/update')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(RolesEnum.Admin)
+  public updateOwn(@Request() req, @Body() updateUserDto: UpdateUserDto) {
+    const userId = req.user.userId;
+    return this.userService.update(userId, updateUserDto);
+  }
+
   @Put(':id')
   @UseGuards(JwtAuthGuard, RolesGuard)
+  @Roles(RolesEnum.Admin)
   public update(@Param('id', ParseIntPipe) id: number, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(id, updateUserDto);
   }

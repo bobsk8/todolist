@@ -14,8 +14,7 @@ export class TaskService {
 
     public save(task: any): Promise<Task> {
         try {
-            const resp = this.taskRepository.save(task);
-            return resp;
+            return this.taskRepository.save(task);
         } catch (err) {
             throw new HttpException({
                 status: HttpStatus.FORBIDDEN,
@@ -26,8 +25,7 @@ export class TaskService {
 
     public findAll(): Promise<Task[]> {
         try {
-            const resp = this.taskRepository.find();
-            return resp;
+            return this.taskRepository.find();
         } catch (err) {
             throw new HttpException({
                 status: HttpStatus.FORBIDDEN,
@@ -38,8 +36,7 @@ export class TaskService {
 
     public findOne(id: number): Promise<Task> {
         try {
-            const resp = this.taskRepository.findOne({ where: { id } });
-            return resp;
+            return this.taskRepository.findOne({ where: { id } });
         } catch (err) {
             throw new HttpException({
                 status: HttpStatus.FORBIDDEN,
@@ -61,10 +58,7 @@ export class TaskService {
 
     public async update(id: number, task: UpdateTaskDto): Promise<Task> {
         try {
-            const taskSaved = await this.taskRepository.findOne({ where: { id } });
-            taskSaved.description = task.description;
-            taskSaved.completed = task.completed;
-            return this.taskRepository.save(taskSaved);
+            return this.taskRepository.save({ id, task });
         } catch (err) {
             throw new HttpException({
                 status: HttpStatus.FORBIDDEN,
@@ -75,8 +69,7 @@ export class TaskService {
 
     public async findByProjectId(projectId: number): Promise<Task[]> {
         try {
-            const resp = this.taskRepository.find({ where: { projectId } });
-            return resp;
+            return this.taskRepository.find({ where: { projectId } });
         } catch (err) {
             throw new HttpException({
                 status: HttpStatus.FORBIDDEN,

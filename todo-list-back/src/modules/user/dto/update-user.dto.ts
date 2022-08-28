@@ -31,10 +31,4 @@ export class UpdateUserDto {
   })
   @IsString()
   cellPhone: string;
-
-  @ApiProperty({
-    description: 'The email of user',
-  })
-  @IsString()
-  email: string;
 }
