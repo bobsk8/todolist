@@ -10,11 +10,14 @@ import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';
 
+import { AlertMessagesService } from '../services/alert-messages.service';
+
 @Injectable()
 export class HttpErrorInterceptor implements HttpInterceptor {
 
   constructor(
     private router: Router,
+    private alertMessagesService: AlertMessagesService
   ) { }
 
   public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -39,6 +42,6 @@ export class HttpErrorInterceptor implements HttpInterceptor {
   }
 
   private openErrorDialog(message: any): void {
-    alert(message);
+    this.alertMessagesService.showErrorAlert(message);
   }
 }

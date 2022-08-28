@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+
+import { AlertMessagesService } from 'src/app/core/services/alert-messages.service';
 import { ProjectService } from 'src/app/core/services/project.service';
 import { Project } from 'src/app/model/project.model';
 
@@ -20,7 +22,8 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
     private projectService: ProjectService,
     private route: ActivatedRoute,
     private fb: UntypedFormBuilder,
-    private router: Router
+    private router: Router,
+    private alertMessagesService: AlertMessagesService
   ) { }
 
   public ngOnInit(): void {
@@ -68,7 +71,7 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
   private saveProject(project: Project): void {
     const sub = this.projectService.save(project)
       .subscribe(() => {
-        alert('Project save!');
+        this.alertMessagesService.showSuccessAlert('Project save!');
         this.router.navigate(['main/project']);
       });
     this.subs.push(sub);
@@ -77,7 +80,7 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
   private editProject(project: Project): void {
     const sub = this.projectService.update(project.id, project)
       .subscribe(() => {
-        alert('Project update!');
+        this.alertMessagesService.showSuccessAlert('Project update!');
         this.router.navigate(['main/project']);
       });
     this.subs.push(sub);

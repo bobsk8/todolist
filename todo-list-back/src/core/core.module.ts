@@ -4,6 +4,7 @@ import { APP_FILTER, APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { join } from 'path';
+import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 
 import { AuthController } from 'src/modules/auth/auth.controller';
 import { AuthModule } from 'src/modules/auth/auth.module';
@@ -16,6 +17,7 @@ import { UserModule } from 'src/modules/user/user.module';
 import { RoleModule } from 'src/modules/role/role.module';
 import { LoggerMiddleware } from './middlewares/logger.middleware';
 import { RoleController } from 'src/modules/role/role.controller';
+import { HttpExceptionFilter } from './filters/http-exception.filter';
 
 @Module({
     imports: [
@@ -32,6 +34,10 @@ import { RoleController } from 'src/modules/role/role.controller';
             migrations: ["dist/migration/*.js"],
             synchronize: false
         }),
+        ThrottlerModule.forRoot({
+            ttl: 60,
+            limit: 20,
+          }),
         RoleModule,
         UserModule,
         TaskModule,
@@ -41,7 +47,20 @@ import { RoleController } from 'src/modules/role/role.controller';
             rootPath: join(__dirname, '..', 'client'),
         }),
     ],
-    providers: []
+    providers: [
+        {
+            provide: APP_FILTER,
+            useClass: HttpExceptionFilter,
+          },
+          {
+            provide: APP_PIPE,
+            useClass: ValidationPipe,
+          },
+          {
+            provide: APP_GUARD,
+            useClass: ThrottlerGuard
+          }
+    ]
 })
 export class CoreModule {
     configure(consumer: MiddlewareConsumer) {
