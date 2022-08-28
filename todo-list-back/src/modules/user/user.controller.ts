@@ -12,7 +12,7 @@ import {
   ParseIntPipe,
   Request,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/core/decorators/roles.decorator';
 import { RolesGuard } from 'src/core/guards/roles.guard';
 import { RolesEnum } from 'src/shared/enums/role.enum';
@@ -45,6 +45,14 @@ export class UserController {
   @Roles(RolesEnum.Admin)
   public findOne(@Param('id', ParseIntPipe) id: number, @Request() req) {
     return this.userService.findOne(id);
+  }
+
+  @Get('/own/datas')
+  @ApiBearerAuth()
+  @UseGuards(JwtAuthGuard)
+  public findOwn(@Request() req) {
+    const userId = req.user.userId;
+    return this.userService.findOne(userId);
   }
 
   @Put(':id')

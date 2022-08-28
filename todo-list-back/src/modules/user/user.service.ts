@@ -52,7 +52,6 @@ export class UserService {
   public async findOne(id: number): Promise<User> {
     try {
       const resp = await this.usersRepository.findOne({ where: { id } });
-      delete resp.password;
       return resp;
     } catch (err) {
       throw new HttpException(

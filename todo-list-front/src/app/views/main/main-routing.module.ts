@@ -26,6 +26,10 @@ const routes: Routes = [
         canLoad: [AuthGuard]
       },
       {
+        path: 'profile', loadChildren: () => import('./components/profile/profile.module').then(m => m.ProfileModule),
+        canLoad: [AuthGuard]
+      },
+      {
         path: 'user', loadChildren: () =>
           import('./components/user/user.module').then(m => m.UserModule),
         canLoad: [AuthGuard, RoleGuard],

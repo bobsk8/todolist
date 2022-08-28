@@ -25,7 +25,7 @@ export class User {
   @Column({ type: 'varchar', unique: true, nullable: false })
   public email: string;
 
-  @Column({ type: 'varchar', nullable: false })
+  @Column({ type: 'varchar', nullable: false, select: false})
   public password: string;
 
   @OneToMany((type) => Project, (project) => project.user)
