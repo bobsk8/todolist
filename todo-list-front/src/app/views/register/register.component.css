@@ -1,5 +1,13 @@
-.content {
-    padding-right: 40%;
-    padding-left: 26%;
-    padding-top: 2%;
+.stretched-link {
+    color: #0056b3;
+    text-decoration: none;
+    cursor:pointer;
+}
+
+.checkbox {
+    margin-top: 6px;
+}
+
+.white-link {
+    color: white;
 }
