@@ -31,6 +31,7 @@
     "@nestjs/swagger": "^6.0.5",
     "@nestjs/throttler": "^3.0.0",
     "@nestjs/typeorm": "^9.0.0",
+    "@types/multer": "^1.4.7",
     "bcrypt": "^5.0.1",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.11.1",
@@ -42,7 +43,7 @@
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0",
     "swagger-ui-express": "^4.1.4",
-    "typeorm": "0.3.7"
+    "typeorm": "0.3.9"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",

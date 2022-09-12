@@ -27,8 +27,8 @@
                                         <td>{{user.firstName}}</td>
                                         <td>{{user.email}}</td>
                                         <td>
-                                            <a (click)="deactivateOrActiveUser(user)" class="btn"
-                                                [ngClass]="{'btn-danger': !user.active, 'btn-primary': user.active}">Disable</a>
+                                            <a (click)="deactivateOrActiveUser(user)" class="btnm"
+                                                [ngClass]="{'btn-block bg-gradient-success btn-sm': !user.active, 'btn-block bg-gradient-warning btn-sm': user.active}">Disable</a>
                                         </td>
                                     </tr>
                                 </tbody>

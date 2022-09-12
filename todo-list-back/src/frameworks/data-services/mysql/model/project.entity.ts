@@ -1,0 +1,25 @@
+import {
+  Column,
+  Entity,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
+
+import { BaseEntity } from './base/base.entity';
+import { TaskEntity } from './task.entity';
+import { UserEntity } from './user.entity';
+
+@Entity('project')
+export class ProjectEntity extends BaseEntity {
+  @Column({ type: 'varchar', nullable: false })
+  public name: string;
+
+  @Column({ type: 'number', nullable: false })
+  public userId: number;
+
+  @OneToMany((type) => TaskEntity, (task) => task.project)
+  public tasks: TaskEntity[];
+
+  @ManyToOne((type) => UserEntity, (user) => user.projects)
+  public user: UserEntity;
+}
