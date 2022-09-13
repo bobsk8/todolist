@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { ProjectService } from 'src/app/core/services/project.service';
+import { TaskService } from 'src/app/core/services/task.service';
 import { Project } from 'src/app/model/project.model';
 import { Task } from 'src/app/model/task.model';
 
@@ -15,7 +16,8 @@ export class ProjectComponent implements OnInit, OnDestroy {
   public projects: Project[] = [];
   private subs: Subscription[] = [];
   constructor(
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private taskSerice: TaskService
   ) { }
 
   public ngOnInit(): void {
@@ -40,7 +42,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
   }
 
   public saveTask(project: Project, task: Task): void {
-    const sub = this.projectService.addTask(project.id, task)
+    const sub = this.taskSerice.save(project.id, task)
       .subscribe(resp => {
         project.tasks.push(resp);
       });
