@@ -28,10 +28,7 @@ export class ProjectUseCases {
     return this.dataServices.projects.create(project);
   }
 
-  public updateProject(
-    projectId: number,
-    updateProjectDto: UpdateProjectDto,
-  ): Promise<ProjectEntity> {
+  public updateProject(projectId: number, updateProjectDto: UpdateProjectDto): Promise<ProjectEntity> {
     const project = this.projectFactoryService.updateProject(updateProjectDto);
     return this.dataServices.projects.update(projectId, project);
   }

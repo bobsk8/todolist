@@ -24,10 +24,7 @@ export class RoleUseCases {
     return this.dataServices.roles.create(role);
   }
 
-  public updateRole(
-    roleId: number,
-    updateRoleDto: UpdateRoleDto,
-  ): Promise<RoleEntity> {
+  public updateRole(roleId: number, updateRoleDto: UpdateRoleDto): Promise<RoleEntity> {
     const role = this.roleFactoryService.updateRole(updateRoleDto);
     return this.dataServices.roles.update(roleId, role);
   }

@@ -6,29 +6,29 @@ export class UpdateUserDto {
     description: 'The firstName of user',
   })
   @IsString()
-  firstName: string;
+  public firstName: string;
 
   @ApiProperty({
     description: 'The lastName of user',
   })
   @IsString()
-  lastName: string;
+  public lastName: string;
 
   @ApiProperty({
     description: 'The cpf of user',
   })
   @IsString()
-  cpf: string;
+  public cpf: string;
 
   @ApiProperty({
     description: 'The cnpj of user',
   })
   @IsString()
-  cnpj: string;
+  public cnpj: string;
 
   @ApiProperty({
     description: 'The cellPhone of user',
   })
   @IsString()
-  cellPhone: string;
+  public cellPhone: string;
 }

@@ -7,5 +7,5 @@ export class CreateTaskDto {
         description: 'The description of task',
     })
     @IsString()
-    description: string;
+    public description: string;
 }

@@ -5,7 +5,7 @@ import { CreateUserDto, UpdateUserDto } from '../../core/dtos';
 
 @Injectable()
 export class UserFactoryService {
-  createNewUser(createUserDto: CreateUserDto) {
+  public createNewUser(createUserDto: CreateUserDto): UserEntity {
     const newUser = new UserEntity();
     newUser.firstName = createUserDto.firstName;
     newUser.lastName = createUserDto.lastName;
@@ -18,7 +18,7 @@ export class UserFactoryService {
     return newUser;
   }
 
-  updateUser(updateUserDto: UpdateUserDto) {
+  public updateUser(updateUserDto: UpdateUserDto): UserEntity {
     const newUser = new UserEntity();
     newUser.firstName = updateUserDto.firstName;
     newUser.lastName = updateUserDto.lastName;

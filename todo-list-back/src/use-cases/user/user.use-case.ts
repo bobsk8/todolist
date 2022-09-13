@@ -24,10 +24,7 @@ export class UserUseCases {
     return this.dataServices.users.create(user);
   }
 
-  public updateUser(
-    userId: number,
-    updateUserDto: UpdateUserDto,
-  ): Promise<UserEntity> {
+  public updateUser(userId: number, updateUserDto: UpdateUserDto): Promise<UserEntity> {
     const user = this.userFactoryService.updateUser(updateUserDto);
     return this.dataServices.users.update(userId, user);
   }

@@ -1,7 +1,7 @@
 
 import { Injectable } from '@nestjs/common';
 import { UserEntity } from '../../core/entities';
-import { CredentialsDto } from '../../core/dtos';
+import { CredentialsDto, LoginUserDto } from '../../core/dtos';
 
 @Injectable()
 export class AuthFactoryService {
@@ -11,5 +11,15 @@ export class AuthFactoryService {
     newCredential.password = credentialsDto.password;
 
     return newCredential;
+  }
+
+  public createPayload(user: UserEntity): any {
+    const payload = { email: user.email, sub: user.id, roles: user.roles };
+    return payload;
+  }
+
+  public getAuthenticateUser(user: UserEntity, token: string): LoginUserDto {
+    delete user.password;
+    return new LoginUserDto(user, token);
   }
 }

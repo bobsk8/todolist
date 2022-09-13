@@ -8,7 +8,7 @@ export class CreateProjectDto {
         description: 'The name of project',
     })
     @IsString()
-    name: string;
+    public name: string;
 
-    user: UserEntity;
+    public user: UserEntity;
 }

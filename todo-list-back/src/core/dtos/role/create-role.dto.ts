@@ -6,5 +6,5 @@ export class CreateRoleDto {
         description: 'The name of role',
       })
       @IsString()
-      name: string;
+      public name: string;
 }

@@ -8,12 +8,12 @@ export class CredentialsDto {
     })
     @IsNotEmpty()
     @IsString()
-    email: string;
+    public email: string;
 
     @ApiProperty({
         description: 'The password of user',
     })
     @IsNotEmpty()
     @IsString()
-    password: string;
+    public password: string;
 }

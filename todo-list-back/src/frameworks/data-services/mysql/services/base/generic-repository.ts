@@ -6,23 +6,23 @@ export abstract class GenericRepository<T> {
     protected populateOnFind: Object = {}
   ) { }
 
-  getAll(): Promise<T[]> {
+  public getAll(): Promise<T[]> {
     return this.repository.find(this.populateOnFind);
   }
 
-  get(id: any): Promise<T> {
+  public get(id: any): Promise<T> {
     return this.repository.findOne(id);
   }
 
-  create(item: T): Promise<T> {
+  public create(item: T): Promise<T> {
     return this.repository.save(item);
   }
 
-  update(id: number, item: T) {
+  public update(id: number, item: T) {
     return this.repository.save({ id, ...item });
   }
 
-  delete(id: number) {
+  public delete(id: number) {
     return this.repository.delete(id);
   }
 }

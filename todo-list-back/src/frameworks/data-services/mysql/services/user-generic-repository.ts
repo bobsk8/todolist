@@ -11,7 +11,7 @@ export class UserRepository extends GenericRepository<UserEntity> implements IUs
     super(repository);
   }
 
-  getByEmail(email: string): Promise<UserEntity> {
+  public getByEmail(email: string): Promise<UserEntity> {
     return this.repository.findOne({
       where: { email }, relations: {
         roles: true,

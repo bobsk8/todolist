@@ -4,14 +4,14 @@ import { CreateRoleDto, UpdateRoleDto } from '../../core/dtos';
 
 @Injectable()
 export class RoleFactoryService {
-  createNewRole(createRoleDto: CreateRoleDto) {
+  public createNewRole(createRoleDto: CreateRoleDto): RoleEntity {
     const newRole = new RoleEntity();
     newRole.name = createRoleDto.name;
 
     return newRole;
   }
 
-  updateRole(updateRoleDto: UpdateRoleDto) {
+  public updateRole(updateRoleDto: UpdateRoleDto): RoleEntity {
     const newRole = new RoleEntity();
     newRole.name = updateRoleDto.name;
 

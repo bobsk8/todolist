@@ -5,9 +5,9 @@ export class UpdateTaskDto {
 
     @ApiProperty()
     @IsString()
-    description: string;
+    public description: string;
 
     @ApiProperty()
     @IsBoolean()
-    completed: boolean;
+    public completed: boolean;
 }

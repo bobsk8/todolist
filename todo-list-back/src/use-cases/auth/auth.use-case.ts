@@ -17,13 +17,11 @@ export class AuthUseCases {
   public async login(credentialsDto: CredentialsDto): Promise<LoginUserDto> {
     try {
       const user = await this.validateUser(credentialsDto);
-      if (!user) {
-        throw new Error;
-      }
-      const payload = { email: user.email, sub: user.id, roles: user.roles };
-      delete user.password;
+      if (!user) throw new Error;
+
+      const payload = this.authFactoryService.createPayload(user);
       const token = this.jwtService.sign(payload);
-      return new LoginUserDto(user, token);
+      return this.authFactoryService.getAuthenticateUser(user, token);
     } catch (err) {
       throw new UnauthorizedException(`email or password is incorrect`);;
     }
@@ -34,10 +32,7 @@ export class AuthUseCases {
     const { email, password } = authentication;
     try {
       const user = await this.dataServices.users.getByEmail(email);
-
-      if (!user) {
-        return null;
-      }
+      if (!user) return null;
 
       const isValid = await passwordCompare(password, user.password);
       if (isValid) {
