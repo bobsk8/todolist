@@ -13,7 +13,8 @@ import { ProjectEntity, RoleEntity, TaskEntity, UserEntity } from './model';
       ProjectEntity,
       RoleEntity,
       TaskEntity,
-      UserEntity]),
+      UserEntity,
+    ]),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: process.env.DATABASE_HOST,
@@ -21,10 +22,10 @@ import { ProjectEntity, RoleEntity, TaskEntity, UserEntity } from './model';
       username: process.env.DATABASE_USER,
       password: process.env.DATABASE_PASS,
       database: process.env.DATABASE_NAME,
-      entities: ["dist/**/*.entity{.ts,.js}"],
+      entities: ['dist/**/*.entity{.ts,.js}'],
       logging: Boolean(process.env.DATABASE_LOGGING),
-      migrations: ["dist/migration/*.js"],
-      synchronize: false
+      migrations: ['dist/migration/*.js'],
+      synchronize: false,
     }),
   ],
   providers: [
@@ -35,4 +36,4 @@ import { ProjectEntity, RoleEntity, TaskEntity, UserEntity } from './model';
   ],
   exports: [IDataServices],
 })
-export class MysqlDataServicesModule { }
+export class MysqlDataServicesModule {}

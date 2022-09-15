@@ -5,4 +5,4 @@ import { MysqlDataServicesModule } from '../../frameworks/data-services/mysql/my
   imports: [MysqlDataServicesModule],
   exports: [MysqlDataServicesModule],
 })
-export class DataServicesModule { }
+export class DataServicesModule {}

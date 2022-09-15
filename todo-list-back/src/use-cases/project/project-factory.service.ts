@@ -4,8 +4,10 @@ import { CreateProjectDto, UpdateProjectDto } from '../../core/dtos';
 
 @Injectable()
 export class ProjectFactoryService {
-  
-  public createNewProject(createProjectDto: CreateProjectDto, userId: number): ProjectEntity {
+  public createNewProject(
+    createProjectDto: CreateProjectDto,
+    userId: number,
+  ): ProjectEntity {
     const newProject = new ProjectEntity();
     newProject.name = createProjectDto.name;
     newProject.userId = userId;

@@ -27,10 +27,10 @@ export class UserEntity extends BaseEntity {
   @Column({ type: 'boolean', nullable: false, default: true })
   public active: boolean;
 
-  @Column({ type: 'varchar', nullable: false})
+  @Column({ type: 'varchar', nullable: false })
   public password: string;
 
-  @OneToMany((type) => ProjectEntity, (project) => project.user)
+  @OneToMany(() => ProjectEntity, (project) => project.user)
   public projects: ProjectEntity[];
 
   @ManyToMany(() => RoleEntity, (role) => role.users)

@@ -15,9 +15,9 @@ import { AuthUseCases } from './auth.use-case';
         expiresIn: 33600,
       },
     }),
-    DataServicesModule
+    DataServicesModule,
   ],
   providers: [AuthFactoryService, AuthUseCases, JwtStrategy],
   exports: [AuthFactoryService, AuthUseCases],
 })
-export class AuthUseCasesModule { }
+export class AuthUseCasesModule {}

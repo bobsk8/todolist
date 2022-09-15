@@ -9,10 +9,16 @@ export class TaskUseCases {
   constructor(
     private dataServices: IDataServices,
     private taskFactoryService: TaskFactoryService,
-  ) { }
+  ) {}
 
-  public saveTask(projectId: number, createTaskDto: CreateTaskDto): Promise<TaskEntity> {
-    const task = this.taskFactoryService.createNewTask(createTaskDto, projectId);
+  public saveTask(
+    projectId: number,
+    createTaskDto: CreateTaskDto,
+  ): Promise<TaskEntity> {
+    const task = this.taskFactoryService.createNewTask(
+      createTaskDto,
+      projectId,
+    );
     return this.dataServices.tasks.create(task);
   }
 

@@ -8,4 +8,4 @@ import { TaskUseCases } from './task.use-case';
   providers: [TaskFactoryService, TaskUseCases],
   exports: [TaskFactoryService, TaskUseCases],
 })
-export class TaskUseCasesModule { }
+export class TaskUseCasesModule {}

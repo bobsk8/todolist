@@ -3,12 +3,11 @@ import { ApiProperty } from '@nestjs/swagger';
 import { UserEntity } from 'src/core/entities';
 
 export class CreateProjectDto {
+  @ApiProperty({
+    description: 'The name of project',
+  })
+  @IsString()
+  public name: string;
 
-    @ApiProperty({
-        description: 'The name of project',
-    })
-    @IsString()
-    public name: string;
-
-    public user: UserEntity;
+  public user: UserEntity;
 }

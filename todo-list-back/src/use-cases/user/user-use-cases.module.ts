@@ -8,4 +8,4 @@ import { UserUseCases } from './user.use-case';
   providers: [UserFactoryService, UserUseCases],
   exports: [UserFactoryService, UserUseCases],
 })
-export class UserUseCasesModule { }
+export class UserUseCasesModule {}

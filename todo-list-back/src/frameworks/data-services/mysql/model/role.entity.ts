@@ -5,11 +5,10 @@ import { BaseEntity } from './base/base.entity';
 
 @Entity('role')
 export class RoleEntity extends BaseEntity {
-    @Column({ type: 'varchar', nullable: false, unique: true })
-    public name: string;
+  @Column({ type: 'varchar', nullable: false, unique: true })
+  public name: string;
 
-    @ManyToMany(() => UserEntity, (user) => user.roles)
-    @JoinTable()
-    public users: UserEntity[]
-
+  @ManyToMany(() => UserEntity, (user) => user.roles)
+  @JoinTable()
+  public users: UserEntity[];
 }

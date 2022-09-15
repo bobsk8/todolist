@@ -1,7 +1,7 @@
-import { GenericEntity } from "./generic.entity";
-import { ProjectEntity } from "./project.entity";
+import { GenericEntity } from './generic.entity';
+import { ProjectEntity } from './project.entity';
 
-export class TaskEntity  extends GenericEntity {
+export class TaskEntity extends GenericEntity {
   public description: string;
 
   public completed: boolean;

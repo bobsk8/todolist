@@ -22,11 +22,10 @@ import { JwtAuthGuard } from 'src/common/helpers';
 import { CreateUserDto, UpdateUserDto } from 'src/core/dtos';
 import { UserUseCases } from 'src/use-cases/user/user.use-case';
 
-
 @Controller('user')
 @ApiTags('user')
 export class UserController {
-  constructor(private userUseCases: UserUseCases) { }
+  constructor(private userUseCases: UserUseCases) {}
 
   @Post()
   @UsePipes(ValidationPipe)
@@ -39,13 +38,17 @@ export class UserController {
   @Roles(RolesEnum.Admin)
   public findAll(@Query() query: any) {
     const { offset, limit, sortBy } = query;
-    return this.userUseCases.findAll(offset, limit, sortBy ? JSON.parse(sortBy) : null);
+    return this.userUseCases.findAll(
+      offset,
+      limit,
+      sortBy ? JSON.parse(sortBy) : null,
+    );
   }
 
   @Get(':id')
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(RolesEnum.Admin)
-  public findOne(@Param('id', ParseIntPipe) id: number, @Request() req) {
+  public findOne(@Param('id', ParseIntPipe) id: number) {
     return this.userUseCases.getUserById(id);
   }
 
@@ -68,7 +71,10 @@ export class UserController {
   @Put(':id')
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(RolesEnum.Admin)
-  public update(@Param('id', ParseIntPipe) id: number, @Body() updateUserDto: UpdateUserDto) {
+  public update(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateUserDto: UpdateUserDto,
+  ) {
     return this.userUseCases.updateUser(id, updateUserDto);
   }
 

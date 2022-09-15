@@ -20,8 +20,8 @@ export class TaskEntity extends BaseEntity {
   @Column({ type: 'varchar', nullable: false })
   public projectId: number;
 
-  @ManyToOne((type) => ProjectEntity, (project) => project.tasks, {
-    onDelete: "CASCADE"
+  @ManyToOne(() => ProjectEntity, (project) => project.tasks, {
+    onDelete: 'CASCADE',
   })
   public project: ProjectEntity;
 

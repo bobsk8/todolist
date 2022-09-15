@@ -4,11 +4,11 @@ import { ProjectEntity } from '../model';
 import { GenericRepository } from './base/generic-repository';
 import { IProjectRepository } from 'src/core';
 
-export class ProjectRepository extends GenericRepository<ProjectEntity> implements IProjectRepository<ProjectEntity> {
-
-  constructor(
-    protected repository: Repository<ProjectEntity>
-  ) {
+export class ProjectRepository
+  extends GenericRepository<ProjectEntity>
+  implements IProjectRepository<ProjectEntity>
+{
+  constructor(protected repository: Repository<ProjectEntity>) {
     super(repository);
   }
 

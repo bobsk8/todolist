@@ -1,13 +1,10 @@
 import { Repository } from 'typeorm';
 
 export abstract class GenericRepository<T> {
-  constructor(
-    protected repository: Repository<T>,
-    protected populateOnFind: Object = {}
-  ) { }
+  constructor(protected repository: Repository<T>) {}
 
   public getAll(): Promise<T[]> {
-    return this.repository.find(this.populateOnFind);
+    return this.repository.find();
   }
 
   public get(id: any): Promise<T> {

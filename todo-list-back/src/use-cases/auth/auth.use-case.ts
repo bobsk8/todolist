@@ -11,24 +11,27 @@ export class AuthUseCases {
   constructor(
     private dataServices: IDataServices,
     private authFactoryService: AuthFactoryService,
-    private jwtService: JwtService
-  ) { }
+    private jwtService: JwtService,
+  ) {}
 
   public async login(credentialsDto: CredentialsDto): Promise<LoginUserDto> {
     try {
       const user = await this.validateUser(credentialsDto);
-      if (!user) throw new Error;
+      if (!user) throw new Error();
 
       const payload = this.authFactoryService.createPayload(user);
       const token = this.jwtService.sign(payload);
       return this.authFactoryService.getAuthenticateUser(user, token);
     } catch (err) {
-      throw new UnauthorizedException(`email or password is incorrect`);;
+      throw new UnauthorizedException(`email or password is incorrect`);
     }
   }
 
-  private async validateUser(credentialsDto: CredentialsDto): Promise<UserEntity> {
-    const authentication = this.authFactoryService.authentication(credentialsDto);
+  private async validateUser(
+    credentialsDto: CredentialsDto,
+  ): Promise<UserEntity> {
+    const authentication =
+      this.authFactoryService.authentication(credentialsDto);
     const { email, password } = authentication;
     try {
       const user = await this.dataServices.users.getByEmail(email);

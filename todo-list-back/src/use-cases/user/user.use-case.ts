@@ -9,9 +9,13 @@ export class UserUseCases {
   constructor(
     private dataServices: IDataServices,
     private userFactoryService: UserFactoryService,
-  ) { }
+  ) {}
 
-  public findAll(skip = 0, take = 10, order: any = { id: 'DESC' }): Promise<UserEntity[]> {
+  public findAll(
+    skip = 0,
+    take = 10,
+    order: any = { id: 'DESC' },
+  ): Promise<UserEntity[]> {
     return this.dataServices.users.getAllUsersPagination(skip, take, order);
   }
 
@@ -24,7 +28,10 @@ export class UserUseCases {
     return this.dataServices.users.create(user);
   }
 
-  public updateUser(userId: number, updateUserDto: UpdateUserDto): Promise<UserEntity> {
+  public updateUser(
+    userId: number,
+    updateUserDto: UpdateUserDto,
+  ): Promise<UserEntity> {
     const user = this.userFactoryService.updateUser(updateUserDto);
     return this.dataServices.users.update(userId, user);
   }

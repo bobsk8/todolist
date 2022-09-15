@@ -9,13 +9,16 @@ export class ProjectUseCases {
   constructor(
     private dataServices: IDataServices,
     private projectFactoryService: ProjectFactoryService,
-  ) { }
+  ) {}
 
   public getAllProjects(): Promise<ProjectEntity[]> {
     return this.dataServices.projects.getAll();
   }
 
-  public getProjectByIdAndUserId(id: any, userId: number): Promise<ProjectEntity> {
+  public getProjectByIdAndUserId(
+    id: any,
+    userId: number,
+  ): Promise<ProjectEntity> {
     return this.dataServices.projects.findByIdAndUserId(id, userId);
   }
 
@@ -23,12 +26,21 @@ export class ProjectUseCases {
     return this.dataServices.projects.findByUserId(id);
   }
 
-  public createProject(createProjectDto: CreateProjectDto, userId: number): Promise<ProjectEntity> {
-    const project = this.projectFactoryService.createNewProject(createProjectDto, userId);
+  public createProject(
+    createProjectDto: CreateProjectDto,
+    userId: number,
+  ): Promise<ProjectEntity> {
+    const project = this.projectFactoryService.createNewProject(
+      createProjectDto,
+      userId,
+    );
     return this.dataServices.projects.create(project);
   }
 
-  public updateProject(projectId: number, updateProjectDto: UpdateProjectDto): Promise<ProjectEntity> {
+  public updateProject(
+    projectId: number,
+    updateProjectDto: UpdateProjectDto,
+  ): Promise<ProjectEntity> {
     const project = this.projectFactoryService.updateProject(updateProjectDto);
     return this.dataServices.projects.update(projectId, project);
   }

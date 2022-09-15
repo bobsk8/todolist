@@ -8,4 +8,4 @@ import { RoleUseCases } from './role.use-case';
   providers: [RoleFactoryService, RoleUseCases],
   exports: [RoleFactoryService, RoleUseCases],
 })
-export class RoleUseCasesModule { }
+export class RoleUseCasesModule {}

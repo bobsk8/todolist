@@ -9,7 +9,7 @@ export class RoleUseCases {
   constructor(
     private dataServices: IDataServices,
     private roleFactoryService: RoleFactoryService,
-  ) { }
+  ) {}
 
   public getAllRoles(): Promise<RoleEntity[]> {
     return this.dataServices.roles.getAll();
@@ -24,7 +24,10 @@ export class RoleUseCases {
     return this.dataServices.roles.create(role);
   }
 
-  public updateRole(roleId: number, updateRoleDto: UpdateRoleDto): Promise<RoleEntity> {
+  public updateRole(
+    roleId: number,
+    updateRoleDto: UpdateRoleDto,
+  ): Promise<RoleEntity> {
     const role = this.roleFactoryService.updateRole(updateRoleDto);
     return this.dataServices.roles.update(roleId, role);
   }

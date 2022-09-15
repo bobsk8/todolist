@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseGuards,
+} from '@nestjs/common';
 
 import { Roles } from 'src/common/decorators/roles.decorator';
 import { RolesEnum } from 'src/common/enums/role.enum';
@@ -9,9 +18,7 @@ import { RoleUseCases } from 'src/use-cases/role/role.use-case';
 
 @Controller('role')
 export class RoleController {
-  constructor(
-    private readonly roleUseCases: RoleUseCases
-  ) { }
+  constructor(private readonly roleUseCases: RoleUseCases) {}
 
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
