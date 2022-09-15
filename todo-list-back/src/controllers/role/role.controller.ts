@@ -8,6 +8,7 @@ import {
   Delete,
   UseGuards,
 } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 
 import { Roles } from 'src/common/decorators/roles.decorator';
 import { RolesEnum } from 'src/common/enums/role.enum';
@@ -17,6 +18,7 @@ import { CreateRoleDto, UpdateRoleDto } from 'src/core/dtos';
 import { RoleUseCases } from 'src/use-cases/role/role.use-case';
 
 @Controller('role')
+@ApiTags('role')
 export class RoleController {
   constructor(private readonly roleUseCases: RoleUseCases) {}
 

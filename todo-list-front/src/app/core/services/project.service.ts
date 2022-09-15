@@ -6,6 +6,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Project } from 'src/app/model/project.model';
 import { Task } from 'src/app/model/task.model';
+import { BaseService } from './base/base.service';
 
 
 const httpOptions = {
@@ -17,61 +18,14 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectService {
-
-  private url = environment.apiEndPoint;
+export class ProjectService extends BaseService<Project> {
+  protected path = 'project';
+  protected url = environment.apiEndPoint;
+  
   constructor(
-    private http: HttpClient
-  ) { }
-
-  public save(project: Project): Observable<Project> {
-    return this.http.post(`${this.url}/project`, project, httpOptions)
-      .pipe(
-        catchError(err => {
-          console.log('save project ', err);
-          return throwError(err);
-        })
-      );
-  }
-
-  public update(id: number, project: Project): Observable<Project> {
-    return this.http.put(`${this.url}/project/${id}`, project, httpOptions)
-      .pipe(
-        catchError(err => {
-          console.log('update project ', err);
-          return throwError(err);
-        })
-      );
-  }
-
-  public getAll(): Observable<Project[]> {
-    return this.http.get<Project[]>(`${this.url}/project`, httpOptions)
-      .pipe(
-        catchError(err => {
-          console.log('getAll project ', err);
-          return throwError(err);
-        })
-      );
-  }
-
-  public delete(projectId: number): Observable<Project> {
-    return this.http.delete(`${this.url}/project/${projectId}`, httpOptions)
-      .pipe(
-        catchError(err => {
-          console.log('delete project ', err);
-          return throwError(err);
-        })
-      );
-  }
-
-  public getById(id: number): Observable<Project> {
-    return this.http.get<Project>(`${this.url}/project/${id}`, httpOptions)
-      .pipe(
-        catchError(err => {
-          console.log('getById project ', err);
-          return throwError(err);
-        })
-      );
+    protected http: HttpClient
+  ) { 
+    super(http);
   }
 
   public addTask(projectId: number, task: any): Observable<Task> {

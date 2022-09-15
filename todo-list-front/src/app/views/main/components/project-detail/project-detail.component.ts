@@ -69,7 +69,7 @@ export class ProjectDetailComponent implements OnInit, OnDestroy {
   }
 
   private saveProject(project: Project): void {
-    const sub = this.projectService.save(project)
+    const sub = this.projectService.create(project)
       .subscribe(() => {
         this.alertMessagesService.showSuccessAlert('Project save!');
         this.router.navigate(['main/project']);

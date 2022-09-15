@@ -5,6 +5,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 import { environment } from '../../../environments/environment';
 import { User } from 'src/app/model/user.model';
+import { BaseService } from './base/base.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -15,21 +16,14 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class UserService extends BaseService<User> {
+  protected url = environment.apiEndPoint;
+  protected path = 'user';
 
-  url = environment.apiEndPoint;
   constructor(
-    private http: HttpClient
-  ) { }
-
-  create(user: User): Observable<User> {
-    return this.http.post(`${this.url}/user`, user, httpOptions)
-      .pipe(
-        catchError(err => {
-          console.log('create error: ', err);
-          return throwError(err);
-        })
-      );
+    protected http: HttpClient
+  ) {
+    super(http);
   }
 
   public getOwnUser(): Observable<User> {
@@ -47,47 +41,6 @@ export class UserService {
       .pipe(
         catchError(err => {
           console.log('updateOwnUser user', err);
-          return throwError(err);
-        })
-      );
-  }
-
-  public update(id: number, user: User): Observable<User> {
-    return this.http.put(`${this.url}/user/${id}`, user, httpOptions)
-      .pipe(
-        catchError(err => {
-          console.log('update user ', err);
-          return throwError(err);
-        })
-      );
-  }
-
-  public getAll(offset = 0, limit = 10, sortBy = { id: 'DESC' }): Observable<User[]> {
-    const params = `?limit=${limit}&offset=${offset}&sortBy=${JSON.stringify(sortBy)}`;
-    return this.http.get<User[]>(`${this.url}/user${params}`, httpOptions)
-      .pipe(
-        catchError(err => {
-          console.log('getAll user ', err);
-          return throwError(err);
-        })
-      );
-  }
-
-  public delete(userId: number): Observable<User> {
-    return this.http.delete(`${this.url}/user/${userId}`, httpOptions)
-      .pipe(
-        catchError(err => {
-          console.log('delete user ', err);
-          return throwError(err);
-        })
-      );
-  }
-
-  public getById(id: number): Observable<User> {
-    return this.http.get<User>(`${this.url}/user/${id}`, httpOptions)
-      .pipe(
-        catchError(err => {
-          console.log('getById user ', err);
           return throwError(err);
         })
       );
