@@ -1,8 +1,9 @@
+import { IUserEntity } from '../abstracts/models/user-entity.interface';
 import { GenericEntity } from './generic.entity';
 import { ProjectEntity } from './project.entity';
 import { RoleEntity } from './role.entity';
 
-export class UserEntity extends GenericEntity {
+export class UserEntity extends GenericEntity implements IUserEntity {
   public id: number;
 
   public firstName: string;

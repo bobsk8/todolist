@@ -1,7 +1,8 @@
-import { UserEntity } from '../model';
 import { Repository } from 'typeorm';
+
+import { IUserRepository } from 'src/core';
+import { UserEntity } from '../model';
 import { GenericRepository } from './base/generic-repository';
-import { IUserRepository } from 'src/core/abstracts/user-repository.abstract';
 
 export class UserRepository
   extends GenericRepository<UserEntity>

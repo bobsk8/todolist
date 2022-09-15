@@ -1,4 +1,4 @@
-import { IGenericRepository } from './base/generic-repository.abstract';
+import { IGenericRepository } from '../base/generic-repository.abstract';
 
 export abstract class IProjectRepository<T> extends IGenericRepository<T> {
   public abstract findByUserId(id: number): Promise<T[]>;

@@ -1,7 +1,8 @@
-import { TaskEntity } from '../model';
 import { Repository } from 'typeorm';
+
+import { TaskEntity } from '../model';
 import { GenericRepository } from './base/generic-repository';
-import { ITaskRepository } from 'src/core/abstracts/task-repository.abstract';
+import { ITaskRepository } from 'src/core';
 
 export class TaskRepository
   extends GenericRepository<TaskEntity>

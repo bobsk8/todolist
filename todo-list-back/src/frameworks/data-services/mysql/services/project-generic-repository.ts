@@ -1,8 +1,8 @@
 import { Repository } from 'typeorm';
 
+import { IProjectRepository } from 'src/core';
 import { ProjectEntity } from '../model';
 import { GenericRepository } from './base/generic-repository';
-import { IProjectRepository } from 'src/core';
 
 export class ProjectRepository
   extends GenericRepository<ProjectEntity>

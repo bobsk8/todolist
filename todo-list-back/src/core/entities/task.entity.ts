@@ -1,7 +1,8 @@
+import { ITaskEntity } from '../abstracts/models/task-entity.interface';
 import { GenericEntity } from './generic.entity';
 import { ProjectEntity } from './project.entity';
 
-export class TaskEntity extends GenericEntity {
+export class TaskEntity extends GenericEntity implements ITaskEntity {
   public description: string;
 
   public completed: boolean;

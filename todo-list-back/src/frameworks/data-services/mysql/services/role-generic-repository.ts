@@ -1,7 +1,8 @@
-import { RoleEntity } from '../model';
 import { Repository } from 'typeorm';
+
+import { RoleEntity } from '../model';
 import { GenericRepository } from './base/generic-repository';
-import { IRoleRepository } from 'src/core/abstracts/role-repository.abstract';
+import { IRoleRepository } from 'src/core';
 
 export class RoleRepository
   extends GenericRepository<RoleEntity>
