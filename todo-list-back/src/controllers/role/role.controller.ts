@@ -25,35 +25,35 @@ export class RoleController {
   @Post()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(RolesEnum.Admin)
-  create(@Body() createRoleDto: CreateRoleDto) {
+  public create(@Body() createRoleDto: CreateRoleDto) {
     return this.roleUseCases.createRole(createRoleDto);
   }
 
   @Get()
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(RolesEnum.Admin)
-  findAll() {
+  public findAll() {
     return this.roleUseCases.getAllRoles();
   }
 
   @Get(':id')
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(RolesEnum.Admin)
-  findOne(@Param('id') id: string) {
+  public findOne(@Param('id') id: string) {
     return this.roleUseCases.getRoleById(+id);
   }
 
   @Patch(':id')
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(RolesEnum.Admin)
-  update(@Param('id') id: number, @Body() updateRoleDto: UpdateRoleDto) {
+  public update(@Param('id') id: number, @Body() updateRoleDto: UpdateRoleDto) {
     return this.roleUseCases.updateRole(id, updateRoleDto);
   }
 
   @Delete(':id')
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles(RolesEnum.Admin)
-  remove(@Param('id') id: number) {
+  public remove(@Param('id') id: number) {
     return this.roleUseCases.delete(id);
   }
 }

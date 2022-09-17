@@ -12,7 +12,7 @@ export class AlertMessagesService {
    * show success alert
    * @title string
    */
-  showSuccessAlert(title: string): void {
+  public showSuccessAlert(title: string): void {
     Swal.fire({
       icon: 'success',
       title: 'Success',
@@ -25,7 +25,7 @@ export class AlertMessagesService {
    * show error alert
    * @message string
    */
-  showErrorAlert(message: string): void {
+   public showErrorAlert(message: string): void {
     Swal.fire({
       icon: 'error',
       title: 'Oops...',
@@ -38,7 +38,7 @@ export class AlertMessagesService {
    * @title string
    * @returns Promise<SweetAlertResult<unknown>>
    */
-  showQuestion(title: string): Promise<SweetAlertResult<unknown>> {
+   public showQuestion(title: string): Promise<SweetAlertResult<unknown>> {
     return Swal.fire({
       title,
       icon: 'question',

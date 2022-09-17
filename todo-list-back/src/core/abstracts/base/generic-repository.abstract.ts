@@ -5,7 +5,7 @@ export abstract class IGenericRepository<T> {
 
   public abstract create(item: T): Promise<T>;
 
-  public abstract update(id: number, item: T);
+  public abstract update(id: number, item: T): Promise<T>;
 
-  public abstract delete(id: number);
+  public abstract delete(id: number): Promise<T>;
 }
