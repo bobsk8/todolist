@@ -1,19 +1,16 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-upload-input',
   templateUrl: './upload-input.component.html',
   styleUrls: ['./upload-input.component.css']
 })
-export class UploadInputComponent implements OnInit {
+export class UploadInputComponent {
 
   @Input() public excel = false;
   @Input() public word = false;
   @Output() public eventOnFileSelect = new EventEmitter();
   constructor() { }
-
-  public ngOnInit(): void {
-  }
 
   public onFileSelect(event: any): void {
     const af = this.getType();

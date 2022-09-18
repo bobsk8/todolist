@@ -13,7 +13,7 @@ export class AuthGuard implements CanLoad {
     private router: Router,
   ) { }
 
-  public canLoad(route: Route, segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
+  public canLoad(route: Route): Observable<boolean> | Promise<boolean> | boolean {
     return this.isPermition(route.path);
   }
 

@@ -14,7 +14,7 @@ export class LoggedRedirectGuard implements CanLoad {
     private router: Router,
   ) { }
   
-  public canLoad(route: Route, segments: UrlSegment[]): Observable<boolean> | Promise<boolean> | boolean {
+  public canLoad(): Observable<boolean> | Promise<boolean> | boolean {
     return this.isPermition();
   }
 
