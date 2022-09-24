@@ -1,13 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
+
 import { RoleEntity } from '../../core/entities';
-import { IDataServices } from '../../core/abstracts';
 import { CreateRoleDto, UpdateRoleDto } from '../../core/dtos';
 import { RoleFactoryService } from './role-factory.service';
+import { IDataServices, I_DATA_SERVICE } from 'src/core';
 
 @Injectable()
 export class RoleUseCases {
   constructor(
-    private dataServices: IDataServices,
+    @Inject(I_DATA_SERVICE) private dataServices: IDataServices,
     private roleFactoryService: RoleFactoryService,
   ) {}
 

@@ -1,4 +1,4 @@
-import { IProjectEntity } from 'src/core/abstracts/models/project-entity.interface';
+import { IProjectEntity } from 'src/core';
 import { Column, Entity, ManyToOne, OneToMany } from 'typeorm';
 
 import { BaseEntity } from './base/base.entity';

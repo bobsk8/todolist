@@ -1,6 +1,5 @@
-import { ITaskEntity } from '../abstracts/models/task-entity.interface';
-import { GenericEntity } from './generic.entity';
-import { ProjectEntity } from './project.entity';
+import { IProjectEntity, ITaskEntity } from '../interfaces';
+import { GenericEntity } from './base/generic.entity';
 
 export class TaskEntity extends GenericEntity implements ITaskEntity {
   public description: string;
@@ -9,7 +8,7 @@ export class TaskEntity extends GenericEntity implements ITaskEntity {
 
   public projectId: number;
 
-  public project: ProjectEntity;
+  public project: IProjectEntity;
 
   public createdAt: Date;
 

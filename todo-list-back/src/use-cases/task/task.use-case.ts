@@ -1,13 +1,14 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
+
 import { TaskEntity } from '../../core/entities';
-import { IDataServices } from '../../core/abstracts';
 import { CreateTaskDto, UpdateTaskDto } from '../../core/dtos';
 import { TaskFactoryService } from './task-factory.service';
+import { IDataServices, I_DATA_SERVICE } from 'src/core';
 
 @Injectable()
 export class TaskUseCases {
   constructor(
-    private dataServices: IDataServices,
+    @Inject(I_DATA_SERVICE) private dataServices: IDataServices,
     private taskFactoryService: TaskFactoryService,
   ) {}
 

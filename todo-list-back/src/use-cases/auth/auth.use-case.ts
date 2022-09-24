@@ -1,15 +1,15 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Inject, Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
 import { CredentialsDto, LoginUserDto } from '../../core/dtos';
 import { AuthFactoryService } from './auth-factory.service';
-import { IDataServices, UserEntity } from 'src/core';
+import { IDataServices, I_DATA_SERVICE, UserEntity } from 'src/core';
 import { passwordCompare } from 'src/common/helpers';
 
 @Injectable()
 export class AuthUseCases {
   constructor(
-    private dataServices: IDataServices,
+    @Inject(I_DATA_SERVICE) private dataServices: IDataServices,
     private authFactoryService: AuthFactoryService,
     private jwtService: JwtService,
   ) {}

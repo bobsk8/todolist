@@ -1,9 +1,8 @@
-import { IRoleEntity } from '../abstracts/models/role-entity.interface';
-import { GenericEntity } from './generic.entity';
-import { UserEntity } from './user.entity';
+import { IRoleEntity, IUserEntity } from '../interfaces';
+import { GenericEntity } from './base/generic.entity';
 
 export class RoleEntity extends GenericEntity implements IRoleEntity {
   public name: string;
 
-  public users: UserEntity[];
+  public users: IUserEntity[];
 }

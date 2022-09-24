@@ -1,7 +1,5 @@
-import { IUserEntity } from '../abstracts/models/user-entity.interface';
-import { GenericEntity } from './generic.entity';
-import { ProjectEntity } from './project.entity';
-import { RoleEntity } from './role.entity';
+import { IProjectEntity, IRoleEntity, IUserEntity } from '../interfaces';
+import { GenericEntity } from './base/generic.entity';
 
 export class UserEntity extends GenericEntity implements IUserEntity {
   public id: number;
@@ -22,7 +20,7 @@ export class UserEntity extends GenericEntity implements IUserEntity {
 
   public password: string;
 
-  public projects: ProjectEntity[];
+  public projects: IProjectEntity[];
 
-  public roles: RoleEntity[];
+  public roles: IRoleEntity[];
 }

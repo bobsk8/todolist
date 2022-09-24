@@ -3,7 +3,7 @@ import { Column, Entity, ManyToMany, OneToMany } from 'typeorm';
 import { ProjectEntity } from './project.entity';
 import { RoleEntity } from './role.entity';
 import { BaseEntity } from './base/base.entity';
-import { IUserEntity } from 'src/core/abstracts/models/user-entity.interface';
+import { IUserEntity } from 'src/core';
 
 @Entity('user')
 export class UserEntity extends BaseEntity implements IUserEntity {

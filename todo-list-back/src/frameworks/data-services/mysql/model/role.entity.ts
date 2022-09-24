@@ -2,7 +2,7 @@ import { Column, Entity, JoinTable, ManyToMany } from 'typeorm';
 
 import { UserEntity } from './user.entity';
 import { BaseEntity } from './base/base.entity';
-import { IRoleEntity } from 'src/core/abstracts/models/role-entity.interface';
+import { IRoleEntity } from 'src/core';
 
 @Entity('role')
 export class RoleEntity extends BaseEntity implements IRoleEntity {

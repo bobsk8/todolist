@@ -19,7 +19,9 @@ export class AuthController {
   @Post('login')
   @Throttle(5, 60)
   @UsePipes(ValidationPipe)
-  public async login(@Body() credentialsDto: CredentialsDto): Promise<LoginUserDto> {
+  public async login(
+    @Body() credentialsDto: CredentialsDto,
+  ): Promise<LoginUserDto> {
     return this.authUseCases.login(credentialsDto);
   }
 }

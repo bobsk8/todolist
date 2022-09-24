@@ -2,9 +2,9 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 
-import { IDataServices } from '../../../core';
 import { MysqlDataServices } from './mysql-data-services.service';
 import { ProjectEntity, RoleEntity, TaskEntity, UserEntity } from './model';
+import { I_DATA_SERVICE } from 'src/core';
 
 @Module({
   imports: [
@@ -30,10 +30,10 @@ import { ProjectEntity, RoleEntity, TaskEntity, UserEntity } from './model';
   ],
   providers: [
     {
-      provide: IDataServices,
+      provide: I_DATA_SERVICE,
       useClass: MysqlDataServices,
     },
   ],
-  exports: [IDataServices],
+  exports: [I_DATA_SERVICE],
 })
 export class MysqlDataServicesModule {}
