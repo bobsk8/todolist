@@ -16,7 +16,7 @@ import {
 } from './use-cases';
 import { LoggerMiddleware } from './common/middlewares/logger.middleware';
 import { CoreModule } from './core/core.module';
-import { DataServicesModule } from './services/data-services/data-services.module';
+import { DataServicesModule } from './infrastructure/data-services/data-services.module';
 
 @Module({
   imports: [

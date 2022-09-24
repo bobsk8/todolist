@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { DataServicesModule } from '../../services/data-services/data-services.module';
+import { DataServicesModule } from '../../infrastructure/data-services/data-services.module';
 import { ProjectFactoryService } from './project-factory.service';
 import { ProjectUseCases } from './project.use-case';
 
