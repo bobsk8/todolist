@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { MysqlDataServicesModule } from '../../frameworks/data-services/mysql/mysql-data-services.module';
+import { MysqlDataServicesModule } from '../../infrastructure/data-services/mysql/mysql-data-services.module';
 
 @Module({
   imports: [MysqlDataServicesModule],
