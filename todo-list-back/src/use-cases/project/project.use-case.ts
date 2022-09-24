@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { ProjectEntity } from '../../core/entities';
+import { ProjectEntity } from 'src/entities';
 import { CreateProjectDto, UpdateProjectDto } from '../../core/dtos';
 import { ProjectFactoryService } from './project-factory.service';
 import { IDataServices, I_DATA_SERVICE } from 'src/core';

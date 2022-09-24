@@ -3,8 +3,9 @@ import { JwtService } from '@nestjs/jwt';
 
 import { CredentialsDto, LoginUserDto } from '../../core/dtos';
 import { AuthFactoryService } from './auth-factory.service';
-import { IDataServices, I_DATA_SERVICE, UserEntity } from 'src/core';
+import { IDataServices, I_DATA_SERVICE } from 'src/core';
 import { passwordCompare } from 'src/common/helpers';
+import { UserEntity } from 'src/entities';
 
 @Injectable()
 export class AuthUseCases {

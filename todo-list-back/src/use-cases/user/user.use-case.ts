@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { UserEntity } from '../../core/entities';
+import { UserEntity } from 'src/entities';
 import { CreateUserDto, UpdateUserDto } from '../../core/dtos';
 import { UserFactoryService } from './user-factory.service';
 import { IDataServices, I_DATA_SERVICE } from 'src/core';

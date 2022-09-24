@@ -13,8 +13,8 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from 'src/common/helpers';
-import { TaskEntity } from 'src/core';
 import { CreateTaskDto, UpdateTaskDto } from 'src/core/dtos';
+import { TaskEntity } from 'src/entities';
 import { TaskUseCases } from 'src/use-cases/task/task.use-case';
 
 @Controller('task')

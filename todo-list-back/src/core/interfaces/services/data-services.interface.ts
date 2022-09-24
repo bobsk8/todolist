@@ -5,7 +5,7 @@ import {
   RoleEntity,
   TaskEntity,
   UserEntity,
-} from '../../entities';
+} from '../../../entities';
 import {
   IProjectRepository,
   IRoleRepository,

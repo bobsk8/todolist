@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { RoleEntity } from '../../core/entities';
+import { RoleEntity } from 'src/entities';
 import { CreateRoleDto, UpdateRoleDto } from '../../core/dtos';
 import { RoleFactoryService } from './role-factory.service';
 import { IDataServices, I_DATA_SERVICE } from 'src/core';

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { TaskEntity } from '../../core/entities';
+import { TaskEntity } from 'src/entities';
 import { CreateTaskDto, UpdateTaskDto } from '../../core/dtos';
 
 @Injectable()

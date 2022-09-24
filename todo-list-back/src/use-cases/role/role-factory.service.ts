@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { RoleEntity } from '../../core/entities';
+import { RoleEntity } from 'src/entities';
 import { CreateRoleDto, UpdateRoleDto } from '../../core/dtos';
 
 @Injectable()

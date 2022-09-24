@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ProjectEntity } from '../../core/entities';
+import { ProjectEntity } from 'src/entities';
 import { CreateProjectDto, UpdateProjectDto } from '../../core/dtos';
 
 @Injectable()

@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 
-import { TaskEntity } from '../../core/entities';
+import { TaskEntity } from 'src/entities';
 import { CreateTaskDto, UpdateTaskDto } from '../../core/dtos';
 import { TaskFactoryService } from './task-factory.service';
 import { IDataServices, I_DATA_SERVICE } from 'src/core';

@@ -1,4 +1,4 @@
-import { IProjectEntity, ITaskEntity } from '../interfaces';
+import { IProjectEntity, ITaskEntity } from '../core/interfaces';
 import { GenericEntity } from './base/generic.entity';
 
 export class TaskEntity extends GenericEntity implements ITaskEntity {
