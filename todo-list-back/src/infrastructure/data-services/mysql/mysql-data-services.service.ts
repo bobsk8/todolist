@@ -4,10 +4,10 @@ import { Repository } from 'typeorm';
 
 import { ProjectEntity, RoleEntity, TaskEntity, UserEntity } from './model';
 import { IDataServices } from '../../../core';
-import { UserRepository } from './services/user-generic-repository';
-import { ProjectRepository } from './services/project-generic-repository';
-import { RoleRepository } from './services/role-generic-repository';
-import { TaskRepository } from './services/task-generic-repository';
+import { UserRepository } from './services/user-repository';
+import { ProjectRepository } from './services/project-repository';
+import { RoleRepository } from './services/role-repository';
+import { TaskRepository } from './services/task-repository';
 
 @Injectable()
 export class MysqlDataServices
