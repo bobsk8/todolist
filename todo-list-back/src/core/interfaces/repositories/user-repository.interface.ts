@@ -1,4 +1,4 @@
-import { IGenericRepository } from '../base/generic-repository.abstract';
+import { IGenericRepository } from '../base/generic-repository.interface';
 
 export interface IUserRepository<T> extends IGenericRepository<T> {
   getByEmail(email: string): Promise<T>;
